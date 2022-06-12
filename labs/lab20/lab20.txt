@@ -1,0 +1,1311 @@
+20 примеров:
+1) cmp
+2) sort
+3) comm
+4) uniq
+5) paste
+6) cut
+7) split
+8) join
+9) tee
+10) head
+11) tail
+12) sum 
+13) md5sum
+14) wc
+15) od
+16) du
+17) df
+18) find
+19) tr
+20) mktemp
+3 для подробного разбора:
+1) grep
+2) diff+patch
+3) awk
+
+
+------------------------------ cmp ------------------------------
+
+
+aprold@aproldpc:~/test$ cat > file1
+1234
+abc
+aprold@aproldpc:~/test$ cat > file2
+1234
+ab
+aprold@aproldpc:~/test$ cmp file1 file2
+file1 file2 различаются: байт 8, строка 2
+aprold@aproldpc:~/test$ cat > file2
+123
+aprold@aproldpc:~/test$ cmp file1 file2
+file1 file2 различаются: байт 4, строка 1
+aprold@aproldpc:~/test$ cp file1 file2
+aprold@aproldpc:~/test$ cmp file1 file2
+aprold@aproldpc:~/test$ cat > file1
+абвг
+aprold@aproldpc:~/test$ cat > file2
+абвд
+aprold@aproldpc:~/test$ cmp file1 file2
+file1 file2 различаются: байт 8, строка 1
+aprold@aproldpc:~/test$ cat > file1
+a
+b
+c
+d
+aprold@aproldpc:~/test$ cat > file2
+a
+fff
+c
+dd
+aprold@aproldpc:~/test$ cmp -b file1 file2
+file1 file2 различаются: байт 3, строка 2 равен 142 b 146 f
+
+
+------------------------------ sort ------------------------------
+
+
+aprold@aproldpc:~/test$ cat > file1
+Иванов
+Смирнов
+Кузнецов
+Попов
+Соколов
+Морозов
+Никитин
+Захаров
+Макаров
+Сорокин
+aprold@aproldpc:~/test$ sort file1
+Захаров
+Иванов
+Кузнецов
+Макаров
+Морозов
+Никитин
+Попов
+Смирнов
+Соколов
+Сорокин
+aprold@aproldpc:~/test$ sort -r file1
+Сорокин
+Соколов
+Смирнов
+Попов
+Никитин
+Морозов
+Макаров
+Кузнецов
+Иванов
+Захаров
+
+
+------------------------------ comm ------------------------------
+
+
+aprold@aproldpc:~/test$ sort > file2
+Сорокин
+Смирнов
+Попов
+Никитин
+Морозов
+Макаров
+Кузнецов
+Иванов
+Николаев 
+aprold@aproldpc:~/test$ sort file1 > sort_file1
+aprold@aproldpc:~/test$ comm file2 sort_file1
+	Захаров
+		Иванов
+		Кузнецов
+		Макаров
+		Морозов
+		Никитин
+Николаев 
+		Попов
+		Смирнов
+	Соколов
+		Сорокин
+aprold@aproldpc:~/test$ comm -3 --total file2 sort_file1
+	Захаров
+Николаев
+	Соколов
+1	2	8	итого
+
+
+------------------------------ uniq ------------------------------
+
+
+aprold@aproldpc:~/test$ sort > file1
+Попов
+Соколов
+Попов
+Захаров
+Сорокин
+Соколов
+aprold@aproldpc:~/test$ cat file1
+Захаров
+Попов
+Попов
+Соколов
+Соколов
+Сорокин
+aprold@aproldpc:~/test$ uniq file1
+Захаров
+Попов
+Соколов
+Сорокин
+aprold@aproldpc:~/test$ uniq -u file1
+Захаров
+Сорокин
+aprold@aproldpc:~/test$ uniq -d file1
+Попов
+Соколов
+
+
+------------------------------ paste ------------------------------
+
+
+aprold@aproldpc:~/test$ cat file1
+Захаров
+Попов
+Соколов
+Сорокин
+aprold@aproldpc:~/test$ cat > file2
+58
+87
+79
+91
+aprold@aproldpc:~/test$ cat > file3
+46
+69
+88
+95
+aprold@aproldpc:~/test$ paste -d':' file1 file2 file3 > table
+aprold@aproldpc:~/test$ cat table
+Захаров:58:46
+Попов:87:69
+Соколов:79:88
+Сорокин:91:95
+
+
+------------------------------ cut ------------------------------
+
+
+aprold@aproldpc:~/test$ cut -b 1-6 table
+Зах
+Поп
+Сок
+Сор
+aprold@aproldpc:~/test$ cut -c 1-6 table
+Зах
+Поп
+Сок
+Сор
+aprold@aproldpc:~/test$ why?
+aprold@aproldpc:~/test$ cut -d':' -f 1 table
+Захаров
+Попов
+Соколов
+Сорокин
+aprold@aproldpc:~/test$ cut -d':' -f 2-3 table
+58:46
+87:69
+79:88
+91:95
+
+
+------------------------------ split ------------------------------
+
+
+aprold@aproldpc:~/test$ split -d -l 2 table
+aprold@aproldpc:~/test$ ls
+file1  file2  file3  sort_file1  table  x00  x01
+aprold@aproldpc:~/test$ cat x00
+Захаров:58:46
+Попов:87:69
+aprold@aproldpc:~/test$ cat x01
+Соколов:79:88
+Сорокин:91:95
+aprold@aproldpc:~/test$ split -n 4 table
+aprold@aproldpc:~/test$ ls
+file1  file2  file3  file_id  file_id_sort  sort_file1  table  xaa  xab  xac  xad
+aprold@aproldpc:~/test$ cat xaa xab xac xad
+Захаров:58:46
+Попов:87:69
+Соколов:79:88
+Сорокин:91:95
+aprold@aproldpc:~/test$ cat xaa
+Захаров:58:46aprold@aproldpc:~/test$ cat xab
+
+Попов:87:69
+Сaprold@aproldpc:~/test$ cat xac
+околов:79:88
+�aprold@aproldpc:~/test$ cat xad
+�орокин:91:95
+aprold@aproldpc:~/test$ 
+
+
+------------------------------ join ------------------------------
+
+
+aprold@aproldpc:~/test$ cat > file_id
+1:Попов
+2:Сорокин
+3:Соколов
+4:Захаров
+aprold@aproldpc:~/test$ sort -t':' -k2 file_id > file_id_sort
+aprold@aproldpc:~/test$ join -t':' -1 1 -2 2 table file_id_sort
+Захаров:58:46:4
+Попов:87:69:1
+Соколов:79:88:3
+Сорокин:91:95:2
+aprold@aproldpc:~/test$ sort >> file_id_sort
+213
+293
+204:
+aprold@aproldpc:~/test$ join -a 2 -t':' -e EMP -1 1 -2 2 table file_id_sort
+Захаров:58:46:4
+Попов:87:69:1
+Соколов:79:88:3
+Сорокин:91:95:2
+EMP:204
+EMP:213
+EMP:293
+
+
+------------------------------ tee ------------------------------
+
+
+aprold@aproldpc:~/test$ tee file1 file2 file3
+qwe rty
+qwe rty
+апролд
+апролд
+12345
+12345
+aprold@aproldpc:~/test$ cat file1 file2 file3
+qwe rty
+апролд
+12345
+qwe rty
+апролд
+12345
+qwe rty
+апролд
+12345
+aprold@aproldpc:~/test$ tee -a file1 file2 file3
+everywhere        
+everywhere
+aprold@aproldpc:~/test$ cat file1 file2 file3
+qwe rty
+апролд
+12345
+everywhere
+qwe rty
+апролд
+12345
+everywhere
+qwe rty
+апролд
+12345
+everywhere
+
+
+------------------------------ head ------------------------------
+
+
+aprold@aproldpc:~/test$ ps axu | head -n'-235'
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.1 167812 11448 ?        Ss   09:59   0:01 /sbin/init splash
+root           2  0.0  0.0      0     0 ?        S    09:59   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   09:59   0:00 [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   09:59   0:00 [rcu_par_gp]
+root           6  0.0  0.0      0     0 ?        I<   09:59   0:00 [kworker/0:0H-events_highpri]
+root           9  0.0  0.0      0     0 ?        I<   09:59   0:00 [mm_percpu_wq]
+root          10  0.0  0.0      0     0 ?        S    09:59   0:00 [rcu_tasks_rude_]
+root          11  0.0  0.0      0     0 ?        S    09:59   0:00 [rcu_tasks_trace]
+root          12  0.0  0.0      0     0 ?        S    09:59   0:00 [ksoftirqd/0]
+root          13  0.0  0.0      0     0 ?        I    09:59   0:01 [rcu_sched]
+root          14  0.0  0.0      0     0 ?        S    09:59   0:00 [migration/0]
+aprold@aproldpc:~/test$ cat ~/lab_dir/lab_2.otg | head -c 1000
+P�4S�%��4mimetypeapplication/vnd.oasis.opendocument.graphics-templateP�4SConfigurations2/toolbar/P�4SConfigurations2/floater/P�4SConfigurations2/menubar/P�4S�Configurations2/popupmenu/P�4SConfigurations2/accelerator/P�4S�Configurations2/toolpanel/P�4SConfigurations2/progressbar/P�4S�Configurations2/statusbar/P�4SConfigurations2/images/Bitmaps�4S
+styles.xml�[M�۶��Wp�io\R�~I�n&�'N[���u:�S"!	Y���jק4�5��z�?�i��k7�A�G@�%��ޙ��x�x���>��:��+H(�ɉ=��l
+      &Q2;��z��slz��'x:E�8�b�0��R�N�8����s�ұ��&y�&3�����?�j
+                                                           HP|bg$c@' �t̂�Z�W���	����F���T��u�\�$����@��zSu�]W@鐕,���P�}�>��k��s@��I)\�53F5k�0�"dyP��I�:<~��b�
+i�Ԙ����f��cȀ�`!����Pr����h4reo):gq�.*z
+                                      �)6��5��)n�����S>�/���Laprold@aproldpc:~/test$ 
+
+
+------------------------------ tail ------------------------------
+
+
+aprold@aproldpc:~/test$ ping ya.ru | tail -n'+5'
+64 bytes from ya.ru (87.250.250.242): icmp_seq=4 ttl=54 time=7.91 ms
+64 bytes from ya.ru (87.250.250.242): icmp_seq=5 ttl=54 time=9.72 ms
+64 bytes from ya.ru (87.250.250.242): icmp_seq=6 ttl=54 time=12.2 ms
+64 bytes from ya.ru (87.250.250.242): icmp_seq=7 ttl=54 time=10.2 ms
+^D
+
+
+------------------------------ sum ------------------------------
+
+
+aprold@aproldpc:~/test$ sum file1 file2 file3
+01871     1 file1
+01871     1 file2
+01871     1 file3
+aprold@aproldpc:~/test$ gzip -9 file1
+aprold@aproldpc:~/test$ sum file1.gz file2
+31703     1 file1.gz
+01871     1 file2
+aprold@aproldpc:~/test$ gzip -d file1.gz
+aprold@aproldpc:~/test$ sum file1 file2
+01871     1 file1
+01871     1 file2
+
+
+------------------------------ md5sum ------------------------------
+
+
+aprold@aproldpc:~/test$ md5sum file1 file2 file3
+d520cb585172d19349889d3f8d8b5dca  file1
+d520cb585172d19349889d3f8d8b5dca  file2
+d520cb585172d19349889d3f8d8b5dca  file3
+aprold@aproldpc:~/test$ cat >> file1 <<< 0
+aprold@aproldpc:~/test$ md5sum file1 file2
+6a66df50d000c74325d28d694f328e20  file1
+d520cb585172d19349889d3f8d8b5dca  file2
+
+
+------------------------------ wc ------------------------------
+
+
+aprold@aproldpc:~/test$ cat file1
+qwe rty
+апролд
+12345
+everywhere
+0
+0
+aprold@aproldpc:~/test$ wc file1
+ 6  7 42 file1
+aprold@aproldpc:~/test$ wc
+abc 123
+345 123
+qwerty
+      3       5      23
+
+
+------------------------------ od ------------------------------
+
+
+aprold@aproldpc:~/test$ cat > file1
+121 323
+111
+aprold@aproldpc:~/test$ od -c file1
+0000000   1   2   1       3   2   3  \n   1   1   1  \n
+0000014
+aprold@aproldpc:~/test$ od -b file1
+0000000 061 062 061 040 063 062 063 012 061 061 061 012
+0000014
+aprold@aproldpc:~/test$ od file1
+0000000 031061 020061 031063 005063 030461 005061
+0000014
+aprold@aproldpc:~/test$ cat > file1
+абв
+aprold@aproldpc:~/test$ od -c file1
+0000000 320 260 320 261 320 262  \n
+0000007
+aprold@aproldpc:~/test$ cat > file1
+abc
+aprold@aproldpc:~/test$ od -c file1
+0000000   a   b   c  \n
+0000004
+aprold@aproldpc:~/test$ od -b file1
+0000000 141 142 143 012
+0000004
+
+
+------------------------------ du ------------------------------
+
+
+aprold@aproldpc:~/test$ du /etc | head
+4	/etc/networkd-dispatcher/degraded.d
+4	/etc/networkd-dispatcher/routable.d
+4	/etc/networkd-dispatcher/carrier.d
+4	/etc/networkd-dispatcher/off.d
+4	/etc/networkd-dispatcher/dormant.d
+4	/etc/networkd-dispatcher/no-carrier.d
+28	/etc/networkd-dispatcher
+4	/etc/rcS.d
+8	/etc/sane.d/dll.d
+344	/etc/sane.d
+aprold@aproldpc:~/test$ du --apparent-size /etc | head
+4	/etc/networkd-dispatcher/degraded.d
+4	/etc/networkd-dispatcher/routable.d
+4	/etc/networkd-dispatcher/carrier.d
+4	/etc/networkd-dispatcher/off.d
+4	/etc/networkd-dispatcher/dormant.d
+4	/etc/networkd-dispatcher/no-carrier.d
+28	/etc/networkd-dispatcher
+5	/etc/rcS.d
+5	/etc/sane.d/dll.d
+86	/etc/sane.d
+
+
+------------------------------ df ------------------------------
+
+
+aprold@aproldpc:~/test$ df
+Файл.система   1K-блоков Использовано  Доступно Использовано% Cмонтировано в
+udev             2966520            0   2966520            0% /dev
+tmpfs             600000         1936    598064            1% /run
+/dev/nvme0n1p2 244568380     32858164 199217160           15% /
+tmpfs            2999980            0   2999980            0% /dev/shm
+tmpfs               5120            4      5116            1% /run/lock
+tmpfs            2999980            0   2999980            0% /sys/fs/cgroup
+/dev/loop0           128          128         0          100% /snap/bare/5
+/dev/loop1        791680       791680         0          100% /snap/clion/178
+/dev/loop3        791936       791936         0          100% /snap/clion/180
+/dev/loop2        113536       113536         0          100% /snap/core/12725
+/dev/loop4         56832        56832         0          100% /snap/core18/2253
+/dev/loop5         55552        55552         0          100% /snap/snap-store/558
+/dev/loop6         44672        44672         0          100% /snap/snapd/14978
+/dev/loop7         52224        52224         0          100% /snap/snap-store/547
+/dev/loop8        283776       283776         0          100% /snap/gimp/380
+/dev/loop9         63488        63488         0          100% /snap/core20/1328
+/dev/loop10        66432        66432         0          100% /snap/sublime-text/112
+/dev/loop11       541312       541312         0          100% /snap/pycharm-community/268
+/dev/loop12       331776       331776         0          100% /snap/telegram-desktop/3544
+/dev/loop13        66688        66688         0          100% /snap/gtk-common-themes/1515
+/dev/loop14         2688         2688         0          100% /snap/gnome-system-monitor/174
+/dev/loop15         2688         2688         0          100% /snap/gnome-system-monitor/169
+/dev/loop16       224256       224256         0          100% /snap/gnome-3-34-1804/77
+/dev/loop17       400768       400768         0          100% /snap/gimp/383
+/dev/loop18       253952       253952         0          100% /snap/gnome-3-38-2004/87
+/dev/loop19       541312       541312         0          100% /snap/pycharm-community/267
+/dev/loop20       331392       331392         0          100% /snap/telegram-desktop/3455
+/dev/loop21       168832       168832         0          100% /snap/gnome-3-28-1804/161
+/dev/loop22        66816        66816         0          100% /snap/gtk-common-themes/1519
+/dev/loop23        56960        56960         0          100% /snap/core18/2284
+/dev/loop24        84992        84992         0          100% /snap/discord/131
+/dev/loop25        63488        63488         0          100% /snap/core20/1270
+/dev/loop26       224256       224256         0          100% /snap/gnome-3-34-1804/72
+/dev/loop27       254848       254848         0          100% /snap/gnome-3-38-2004/99
+/dev/nvme0n1p1    523248         5356    517892            2% /boot/efi
+tmpfs             599996           32    599964            1% /run/user/1000
+/dev/loop28        84992        84992         0          100% /snap/discord/132
+aprold@aproldpc:~/test$ df -h
+Файл.система   Размер Использовано  Дост Использовано% Cмонтировано в
+udev             2,9G            0  2,9G            0% /dev
+tmpfs            586M         1,9M  585M            1% /run
+/dev/nvme0n1p2   234G          32G  190G           15% /
+tmpfs            2,9G            0  2,9G            0% /dev/shm
+tmpfs            5,0M         4,0K  5,0M            1% /run/lock
+tmpfs            2,9G            0  2,9G            0% /sys/fs/cgroup
+/dev/loop0       128K         128K     0          100% /snap/bare/5
+/dev/loop1       774M         774M     0          100% /snap/clion/178
+/dev/loop3       774M         774M     0          100% /snap/clion/180
+/dev/loop2       111M         111M     0          100% /snap/core/12725
+/dev/loop4        56M          56M     0          100% /snap/core18/2253
+/dev/loop5        55M          55M     0          100% /snap/snap-store/558
+/dev/loop6        44M          44M     0          100% /snap/snapd/14978
+/dev/loop7        51M          51M     0          100% /snap/snap-store/547
+/dev/loop8       278M         278M     0          100% /snap/gimp/380
+/dev/loop9        62M          62M     0          100% /snap/core20/1328
+/dev/loop10       65M          65M     0          100% /snap/sublime-text/112
+/dev/loop11      529M         529M     0          100% /snap/pycharm-community/268
+/dev/loop12      324M         324M     0          100% /snap/telegram-desktop/3544
+/dev/loop13       66M          66M     0          100% /snap/gtk-common-themes/1515
+/dev/loop14      2,7M         2,7M     0          100% /snap/gnome-system-monitor/174
+/dev/loop15      2,7M         2,7M     0          100% /snap/gnome-system-monitor/169
+/dev/loop16      219M         219M     0          100% /snap/gnome-3-34-1804/77
+/dev/loop17      392M         392M     0          100% /snap/gimp/383
+/dev/loop18      248M         248M     0          100% /snap/gnome-3-38-2004/87
+/dev/loop19      529M         529M     0          100% /snap/pycharm-community/267
+/dev/loop20      324M         324M     0          100% /snap/telegram-desktop/3455
+/dev/loop21      165M         165M     0          100% /snap/gnome-3-28-1804/161
+/dev/loop22       66M          66M     0          100% /snap/gtk-common-themes/1519
+/dev/loop23       56M          56M     0          100% /snap/core18/2284
+/dev/loop24       83M          83M     0          100% /snap/discord/131
+/dev/loop25       62M          62M     0          100% /snap/core20/1270
+/dev/loop26      219M         219M     0          100% /snap/gnome-3-34-1804/72
+/dev/loop27      249M         249M     0          100% /snap/gnome-3-38-2004/99
+/dev/nvme0n1p1   511M         5,3M  506M            2% /boot/efi
+tmpfs            586M          32K  586M            1% /run/user/1000
+/dev/loop28       83M          83M     0          100% /snap/discord/132
+
+
+------------------------------ find ------------------------------
+
+
+aprold@aproldpc:~/test$ find /etc -name host*
+/etc/hostname
+/etc/hostid
+find: ‘/etc/polkit-1/localauthority’: Отказано в доступе
+find: ‘/etc/ssl/private’: Отказано в доступе
+/etc/avahi/hosts
+/etc/hosts.allow
+find: ‘/etc/cups/ssl’: Отказано в доступе
+/etc/host.conf
+/etc/hosts
+/etc/hosts.deny
+aprold@aproldpc:~/test$ find /etc -maxdepth 1 -perm /u=r -perm /a=x | head -n 30
+/etc
+/etc/networkd-dispatcher
+/etc/rcS.d
+/etc/sane.d
+/etc/gdb
+/etc/dconf
+/etc/thunderbird
+/etc/snmp
+/etc/geoclue
+/etc/apache2
+/etc/pulse
+/etc/sudoers.d
+/etc/rc6.d
+/etc/PackageKit
+/etc/vulkan
+/etc/logrotate.d
+/etc/ImageMagick-6
+/etc/openal
+/etc/pam.d
+/etc/profile.d
+/etc/alternatives
+/etc/rc1.d
+/etc/ld.so.conf.d
+/etc/depmod.d
+/etc/fwupd
+/etc/libblockdev
+/etc/libpaper.d
+/etc/udev
+/etc/initramfs-tools
+/etc/gtk-3.0
+
+
+------------------------------ tr ------------------------------
+
+
+aprold@aproldpc:~/test$ tr [:lower:] [:upper:]
+fagjdhhsd
+FAGJDHHSD
+aprold@aproldpc:~/test$ tr [:lower:] [:upper:]
+qwerty Aggg
+QWERTY AGGG
+aprold@aproldpc:~/test$ tr qwe rty
+qwerty qweqwe yes
+rtyrty rtyrty yys
+aprold@aproldpc:~/test$ tr ' ' '\n'
+ipipip pipipi qwerty jojo 
+ipipip
+pipipi
+qwerty
+jojo
+aprold@aproldpc:~/test$ tr 'a-z' '1-9'
+akdhjskjasdhawhdhajld
+194899991948198481994
+aprold@aproldpc:~/test$ tr -d '1-9'
+qwerty123jdkl8376
+qwertyjdkl
+
+
+------------------------------ mktemp ------------------------------
+
+
+aprold@aproldpc:/tmp$ cd ~/test
+aprold@aproldpc:~/test$ tmp_dir=$(mktemp -d)
+aprold@aproldpc:~/test$ cd $tmp_dir
+aprold@aproldpc:/tmp/tmp.WQNUGuCti4$ tmp_f=$(mktemp)
+aprold@aproldpc:/tmp/tmp.WQNUGuCti4$ echo $tmp_f
+/tmp/tmp.R3cOsbPxhU
+aprold@aproldpc:/tmp/tmp.WQNUGuCti4$ cd ..
+aprold@aproldpc:/tmp$ ls
+config-err-9U3edY
+snap.snap-store
+ssh-qMncQNG9PK7q
+systemd-private-cb6b043d125941ba835e1408ba3fed85-colord.service-Uj7zFf
+systemd-private-cb6b043d125941ba835e1408ba3fed85-fwupd.service-cayGfi
+systemd-private-cb6b043d125941ba835e1408ba3fed85-ModemManager.service-idEech
+systemd-private-cb6b043d125941ba835e1408ba3fed85-switcheroo-control.service-8D9Qti
+systemd-private-cb6b043d125941ba835e1408ba3fed85-systemd-logind.service-3Dh4fh
+systemd-private-cb6b043d125941ba835e1408ba3fed85-systemd-resolved.service-RS2fsh
+systemd-private-cb6b043d125941ba835e1408ba3fed85-systemd-timesyncd.service-uWpQTh
+systemd-private-cb6b043d125941ba835e1408ba3fed85-upower.service-08JEoi
+tmp.R3cOsbPxhU
+tmp.WQNUGuCti4
+tracker-extract-files.1000
+aprold@aproldpc:/tmp$ rm -r $tmp_f $tmp_dir
+aprold@aproldpc:/tmp$ ls
+config-err-9U3edY
+snap.snap-store
+ssh-qMncQNG9PK7q
+systemd-private-cb6b043d125941ba835e1408ba3fed85-colord.service-Uj7zFf
+systemd-private-cb6b043d125941ba835e1408ba3fed85-fwupd.service-cayGfi
+systemd-private-cb6b043d125941ba835e1408ba3fed85-ModemManager.service-idEech
+systemd-private-cb6b043d125941ba835e1408ba3fed85-switcheroo-control.service-8D9Qti
+systemd-private-cb6b043d125941ba835e1408ba3fed85-systemd-logind.service-3Dh4fh
+systemd-private-cb6b043d125941ba835e1408ba3fed85-systemd-resolved.service-RS2fsh
+systemd-private-cb6b043d125941ba835e1408ba3fed85-systemd-timesyncd.service-uWpQTh
+systemd-private-cb6b043d125941ba835e1408ba3fed85-upower.service-08JEoi
+tracker-extract-files.1000
+
+
+------------------------------ grep ------------------------------
+
+
+aprold@aproldpc:~/test$ cat > names
+Ревягина Афанасия Ильиновна
+Молчанова Елизавета Никитьевна
+Манякина Лариса Артемова
+Бобр Леонтий Степанович
+Шабунина Василиса Юрьевна
+Борщёва Тамара Тарасовна
+Дурченко Филипп Гаврннлович
+Райт Виктория Давидовна
+Шиловская Юлиана Максимовна
+Масмех Степан Иванович
+Сияносова Анна Феоктистовна
+Колосов Георгий Тимофеевич
+Васнецова Лидия Кузьминовна
+Елышев Евгений Павлович
+Селидов Юрий Лаврентиич
+Ухова Алиса Георгьевна
+Мозжухина Василиса Максимовна
+Бабушкин Яков Никифорович
+Фахриев Виталий Ефимович
+Ярыкина Людмила Георгьевна
+Молодых Кузьма Арсеньевич
+Иньков Аркадий Ефимович
+Хребтов Трофим Иванович
+Валиев Илья Прохорович
+Блатова Таисия Герасимовна
+Мирзoян Кузьма Макарович
+Цветаев Лаврентий Геннадьевич
+Апевалова Серафима Власовна
+Аронова Алена Ипполитовна
+Самохин Виталий Никитович
+
+aprold@aproldpc:~/test$ grep Г names 
+Дурченко Филипп Гаврннлович
+Колосов Георгий Тимофеевич
+Ухова Алиса Георгьевна
+Ярыкина Людмила Георгьевна
+Блатова Таисия Герасимовна
+Цветаев Лаврентий Геннадьевич
+
+aprold@aproldpc:~/test$ grep "^А" names
+Апевалова Серафима Власовна
+Аронова Алена Ипполитовна
+
+aprold@aproldpc:~/test$ grep -n "а$" names
+1:Ревягина Афанасия Ильиновна
+2:Молчанова Елизавета Никитьевна
+3:Манякина Лариса Артемова
+5:Шабунина Василиса Юрьевна
+6:Борщёва Тамара Тарасовна
+8:Райт Виктория Давидовна
+9:Шиловская Юлиана Максимовна
+11:Сияносова Анна Феоктистовна
+13:Васнецова Лидия Кузьминовна
+16:Ухова Алиса Георгьевна
+17:Мозжухина Василиса Максимовна
+20:Ярыкина Людмила Георгьевна
+25:Блатова Таисия Герасимовна
+28:Апевалова Серафима Власовна
+29:Аронова Алена Ипполитовна
+
+aprold@aproldpc:~/test$ grep 'А\|Р' names
+Ревягина Афанасия Ильиновна
+Манякина Лариса Артемова
+Райт Виктория Давидовна
+Сияносова Анна Феоктистовна
+Ухова Алиса Георгьевна
+Молодых Кузьма Арсеньевич
+Иньков Аркадий Ефимович
+Апевалова Серафима Власовна
+Аронова Алена Ипполитовна
+
+aprold@aproldpc:~/test$ grep -rs 'aprold' /etc
+/etc/group-:adm:x:4:syslog,aprold
+/etc/group-:cdrom:x:24:aprold
+/etc/group-:dip:x:30:aprold
+/etc/group-:plugdev:x:46:aprold
+/etc/group-:lpadmin:x:120:aprold
+/etc/group-:lxd:x:131:aprold
+/etc/group-:aprold:x:1000:
+/etc/group-:sambashare:x:132:aprold
+/etc/hostname:aproldpc
+/etc/passwd:aprold:x:1000:1000:Aprold,,,:/home/aprold:/bin/bash
+/etc/subgid:aprold:100000:65536
+/etc/machine-info:PRETTY_HOSTNAME=aproldPC
+/etc/group:adm:x:4:syslog,aprold
+/etc/group:cdrom:x:24:aprold
+/etc/group:sudo:x:27:aprold
+/etc/group:dip:x:30:aprold
+/etc/group:plugdev:x:46:aprold
+/etc/group:lpadmin:x:120:aprold
+/etc/group:lxd:x:131:aprold
+/etc/group:aprold:x:1000:
+/etc/group:sambashare:x:132:aprold
+/etc/hosts:127.0.1.1	aprold-Swift-SF314-41
+/etc/subuid:aprold:100000:65536
+/etc/gdm3/custom.conf:AutomaticLogin=aprold
+/etc/passwd-:aprold:x:1000:1000:Aprold,,,:/home/aprold:/bin/bash
+
+aprold@aproldpc:~/test$ grep -rsw 'aprold' /etc
+/etc/group-:adm:x:4:syslog,aprold
+/etc/group-:cdrom:x:24:aprold
+/etc/group-:dip:x:30:aprold
+/etc/group-:plugdev:x:46:aprold
+/etc/group-:lpadmin:x:120:aprold
+/etc/group-:lxd:x:131:aprold
+/etc/group-:aprold:x:1000:
+/etc/group-:sambashare:x:132:aprold
+/etc/passwd:aprold:x:1000:1000:Aprold,,,:/home/aprold:/bin/bash
+/etc/subgid:aprold:100000:65536
+/etc/group:adm:x:4:syslog,aprold
+/etc/group:cdrom:x:24:aprold
+/etc/group:sudo:x:27:aprold
+/etc/group:dip:x:30:aprold
+/etc/group:plugdev:x:46:aprold
+/etc/group:lpadmin:x:120:aprold
+/etc/group:lxd:x:131:aprold
+/etc/group:aprold:x:1000:
+/etc/group:sambashare:x:132:aprold
+/etc/hosts:127.0.1.1	aprold-Swift-SF314-41
+/etc/subuid:aprold:100000:65536
+/etc/gdm3/custom.conf:AutomaticLogin=aprold
+/etc/passwd-:aprold:x:1000:1000:Aprold,,,:/home/aprold:/bin/bash
+
+aprold@aproldpc:~/test$ grep -rsl 'aprold' /etc
+/etc/group-
+/etc/hostname
+/etc/passwd
+/etc/subgid
+/etc/machine-info
+/etc/group
+/etc/hosts
+/etc/subuid
+/etc/gdm3/custom.conf
+/etc/passwd-
+
+aprold@aproldpc:~/test$ ps aux | grep "aprold *[0-9]* *... *[1-9]\.[0-9]"
+aprold       840  0.5  1.9 1091652 116896 tty2   Rl+  12:13   2:46 /usr/lib/xorg/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -background none -noreset -keeptty -verbose 3
+aprold      1159  0.5  5.3 4982896 323436 ?      Ssl  12:13   2:31 /usr/bin/gnome-shell
+aprold      1453  0.0  4.9 1162836 296660 ?      Sl   12:13   0:16 /snap/snap-store/558/usr/bin/snap-store --gapplication-service
+aprold      2508  0.1  1.0 881888 65480 ?        Sl   12:15   0:51 /usr/bin/gedit --gapplication-service
+aprold      2522  0.2  1.0 859336 61888 ?        Ssl  12:15   1:02 /usr/libexec/gnome-terminal-server
+
+aprold@aproldpc:~/test$ grep Я names
+Бабушкин Яков Никифорович
+Ярыкина Людмила Георгьевна
+aprold@aproldpc:~/test$ grep -i Я names
+Ревягина Афанасия Ильиновна
+Манякина Лариса Артемова
+Райт Виктория Давидовна
+Шиловская Юлиана Максимовна
+Сияносова Анна Феоктистовна
+Васнецова Лидия Кузьминовна
+Бабушкин Яков Никифорович
+Ярыкина Людмила Георгьевна
+Валиев Илья Прохорович
+Блатова Таисия Герасимовна
+Мирзoян Кузьма Макарович
+
+aprold@aproldpc:~/test$ ps aux | grep -c "^root"
+165
+
+
+------------------------------ diff+patch ------------------------------
+
+
+aprold@aproldpc:~/test$ cat main.c
+#include <stdio.h>
+
+int calc(int a, int b, char s) {
+    if (s == '+') {
+        return a+b;
+    }
+    else if (s == '-') {
+        return a-b;
+    }
+    return 0;
+}
+
+int main() {
+    int a,b;
+    char s;
+    scanf("%d%c%d", &a, &s, &b);
+    printf("%d", calc(a, b, s));
+    return 0;
+}
+aprold@aproldpc:~/test$ cat main2.c
+#include <stdio.h>
+
+int calc(int a, int b, char s) {
+    if (s == '+') {
+        return a+b;
+    }
+    else if (s == '-') {
+        return a-b;
+    }
+    else if (s == '*') {
+    	return a*b;
+    }
+    else if (s == '\') {
+    	return a/b;
+    }
+    return 0;
+}
+
+int main() {
+    int a,b;
+    char s;
+    scanf("%d%c%d", &a, &s, &b);
+    printf("%d", calc(a, b, s));
+    return 0;
+}
+aprold@aproldpc:~/test$ diff -u main.c main2.c
+--- main.c	2022-02-22 21:46:15.744286362 +0300
++++ main2.c	2022-02-22 21:48:56.091055332 +0300
+@@ -7,6 +7,12 @@
+     else if (s == '-') {
+         return a-b;
+     }
++    else if (s == '*') {
++    	return a*b;
++    }
++    else if (s == '\') {
++    	return a/b;
++    }
+     return 0;
+ }
+ 
+aprold@aproldpc:~/test$ diff -u main.c main2.c > p.patch
+aprold@aproldpc:~/test$ patch < p.patch
+patching file main.c
+aprold@aproldpc:~/test$ cat main.c
+#include <stdio.h>
+
+int calc(int a, int b, char s) {
+    if (s == '+') {
+        return a+b;
+    }
+    else if (s == '-') {
+        return a-b;
+    }
+    else if (s == '*') {
+    	return a*b;
+    }
+    else if (s == '\') {
+    	return a/b;
+    }
+    return 0;
+}
+
+int main() {
+    int a,b;
+    char s;
+    scanf("%d%c%d", &a, &s, &b);
+    printf("%d", calc(a, b, s));
+    return 0;
+}
+
+aprold@aproldpc:~/test$ patch -R < p.patch
+patching file main.c
+aprold@aproldpc:~/test$ cat main.c
+#include <stdio.h>
+
+int calc(int a, int b, char s) {
+    if (s == '+') {
+        return a+b;
+    }
+    else if (s == '-') {
+        return a-b;
+    }
+    return 0;
+}
+
+int main() {
+    int a,b;
+    char s;
+    scanf("%d%c%d", &a, &s, &b);
+    printf("%d", calc(a, b, s));
+    return 0;
+}
+
+aprold@aproldpc:~/test$ cat main2.c
+#include <stdio.h>
+
+int calc(int a, int b, char s) {
+    if (s == '+') return a+b;
+    else if (s == '-') return a-b;
+    else if (s == '*') return a*b;
+    else if (s == '\') return a/b;
+    return 0;
+}
+
+int main() {
+    int a,b;
+    char s;
+    scanf("%d%c%d", &a, &s, &b);
+    printf("%d", calc(a, b, s));
+    return 0;
+}
+aprold@aproldpc:~/test$ diff main.c main2.c
+4,9c4,7
+<     if (s == '+') {
+<         return a+b;
+<     }
+<     else if (s == '-') {
+<         return a-b;
+<     }
+---
+>     if (s == '+') return a+b;
+>     else if (s == '-') return a-b;
+>     else if (s == '*') return a*b;
+>     else if (s == '\') return a/b;
+aprold@aproldpc:~/test$ diff -c main.c main2.c
+*** main.c	2022-02-22 22:29:05.385900695 +0300
+--- main2.c	2022-02-22 22:34:04.212456981 +0300
+***************
+*** 1,12 ****
+  #include <stdio.h>
+  
+  int calc(int a, int b, char s) {
+!     if (s == '+') {
+!         return a+b;
+!     }
+!     else if (s == '-') {
+!         return a-b;
+!     }
+      return 0;
+  }
+  
+--- 1,10 ----
+  #include <stdio.h>
+  
+  int calc(int a, int b, char s) {
+!     if (s == '+') return a+b;
+!     else if (s == '-') return a-b;
+!     else if (s == '*') return a*b;
+!     else if (s == '\') return a/b;
+      return 0;
+  }
+  
+aprold@aproldpc:~/test$ diff -n main.c main2.c
+d4 6
+a9 4
+    if (s == '+') return a+b;
+    else if (s == '-') return a-b;
+    else if (s == '*') return a*b;
+    else if (s == '\') return a/b;
+
+aprold@aproldpc:~/test$ diff -y main.c main2.c
+#include <stdio.h>						#include <stdio.h>
+
+int calc(int a, int b, char s) {				int calc(int a, int b, char s) {
+    if (s == '+') {					      |	    if (s == '+') return a+b;
+        return a+b;					      |	    else if (s == '-') return a-b;
+    }							      |	    else if (s == '*') return a*b;
+    else if (s == '-') {				      |	    else if (s == '\') return a/b;
+        return a-b;					      <
+    }							      <
+    return 0;							    return 0;
+}								}
+
+int main() {							int main() {
+    int a,b;							    int a,b;
+    char s;							    char s;
+    scanf("%d%c%d", &a, &s, &b);				    scanf("%d%c%d", &a, &s, &b);
+    printf("%d", calc(a, b, s));				    printf("%d", calc(a, b, s));
+    return 0;							    return 0;
+}								}
+aprold@aproldpc:~/test$ diff -q main.c main2.c
+Файлы main.c и main2.c различаются
+aprold@aproldpc:~/test$ mkdir dir1 dir2
+aprold@aproldpc:~/test$ mv main.c dir1
+aprold@aproldpc:~/test$ mv main2.c dir2
+
+aprold@aproldpc:~/test$ diff dir1 dir2
+Только в dir2: main2.c
+Только в dir1: main.c
+
+aprold@aproldpc:~/test$ mv dir2/main2.c dir2/main.c
+aprold@aproldpc:~/test$ diff dir1 dir2
+diff dir1/main.c dir2/main.c
+4,9c4,7
+<     if (s == '+') {
+<         return a+b;
+<     }
+<     else if (s == '-') {
+<         return a-b;
+<     }
+---
+>     if (s == '+') return a+b;
+>     else if (s == '-') return a-b;
+>     else if (s == '*') return a*b;
+>     else if (s == '\') return a/b;
+11a10,12
+> 
+> 
+> 
+
+aprold@aproldpc:~/test$ diff -B dir1 dir2
+diff -B dir1/main.c dir2/main.c
+4,9c4,7
+<     if (s == '+') {
+<         return a+b;
+<     }
+<     else if (s == '-') {
+<         return a-b;
+<     }
+---
+>     if (s == '+') return a+b;
+>     else if (s == '-') return a-b;
+>     else if (s == '*') return a*b;
+>     else if (s == '\') return a/b;
+
+aprold@aproldpc:~/test$ patch dir1/main.c p.patch -o main.c
+patching file main.c (read from dir1/main.c)
+aprold@aproldpc:~/test$ cat main.c
+#include <stdio.h>
+
+int calc(int a, int b, char s) {
+    if (s == '+') return a+b;
+    else if (s == '-') return a-b;
+    else if (s == '*') return a*b;
+    else if (s == '\') return a/b;
+    return 0;
+}
+
+int main() {
+    int a,b;
+    char s;
+    scanf("%d%c%d", &a, &s, &b);
+    printf("%d", calc(a, b, s));
+    return 0;
+}
+
+aprold@aproldpc:~/test$ mkdir dir1/dir dir2/dir
+aprold@aproldpc:~/test$ touch dir1/dir/a.c dir2/dir/a.c
+aprold@aproldpc:~/test$ diff -r dir1 dir2 
+diff -r dir1/dir/a.c dir2/dir/a.c
+3c3
+< 	printf("Hello!");
+---
+> 	printf("Hello World!");
+diff -r dir1/main.c dir2/main.c
+4,9c4,7
+<     if (s == '+') {
+<         return a+b;
+<     }
+<     else if (s == '-') {
+<         return a-b;
+<     }
+---
+>     if (s == '+') return a+b;
+>     else if (s == '-') return a-b;
+>     else if (s == '*') return a*b;
+>     else if (s == '\') return a/b;
+
+
+------------------------------ awk ------------------------------
+
+
+aprold@aproldpc:~/test$ awk '{print $2}' names
+Афанасия
+Елизавета
+Лариса
+Леонтий
+Василиса
+Тамара
+Филипп
+Виктория
+Юлиана
+Степан
+Анна
+Георгий
+Лидия
+Евгений
+Юрий
+Алиса
+Василиса
+Яков
+Виталий
+Людмила
+Кузьма
+Аркадий
+Трофим
+Илья
+Таисия
+Кузьма
+Лаврентий
+Серафима
+Алена
+Виталий
+
+aprold@aproldpc:~/test$ ps aux | awk 'BEGIN{print "USER - aprold\nCPU MEM"} /^aprold/ {print $3 " " $4}' | head -15
+USER - aprold
+CPU MEM
+0.0 0.1
+0.0 0.0
+0.0 0.3
+0.0 0.4
+0.0 0.0
+0.0 0.1
+0.0 0.1
+0.0 0.1
+0.2 1.9
+0.0 0.1
+0.0 0.1
+0.0 0.1
+0.0 0.0
+
+aprold@aproldpc:~/test$ cat > script.awk
+BEGIN {print "USER - aprold\nCPU > 1.0"} 
+/^aprold/ {if ($4 > 1) print }
+aprold@aproldpc:~/test$ ps aux | awk -f script.awk
+USER - aprold
+CPU > 1.0
+aprold       863  1.5  1.9 1087480 117072 tty2   Sl+  09:21   0:33 /usr/lib/xorg/Xorg vt2 -displayfd 3 -auth /run/user/1000/gdm/Xauthority -background none -noreset -keeptty -verbose 3
+aprold      1183  1.7  5.1 5039164 307184 ?      Ssl  09:21   0:37 /usr/bin/gnome-shell
+aprold      1375  0.0  1.0 721296 60012 ?        Sl   09:21   0:00 /usr/libexec/evolution-data-server/evolution-alarm-notify
+aprold      1479  0.5  3.4 1038992 208140 ?      Sl   09:21   0:11 /snap/snap-store/558/usr/bin/snap-store --gapplication-service
+aprold      2012  0.1  1.1 999288 69444 ?        Sl   09:21   0:03 /usr/bin/nautilus --gapplication-service
+aprold      2842  0.7  1.0 875108 62180 ?        Sl   09:26   0:13 /usr/bin/gedit --gapplication-service
+
+aprold@aproldpc:~/test$ cat table
+Захаров:58:46
+Попов:87:69
+Соколов:79:88
+Сорокин:91:95
+aprold@aproldpc:~/test$ cat > script.awk
+{sum1 += $2; sum2 += $3}
+END {print sum1 " " sum2}
+aprold@aproldpc:~/test$ awk -F: -f script.awk table
+315 298
+
+aprold@aproldpc:~/test$ cat > script.awk
+{
+if (i % 2 != 0) print $2 " name length - " length($2)/2 
+i += 1
+}
+aprold@aproldpc:~/test$ awk -f script.awk names
+Елизавета name length - 9
+Леонтий name length - 7
+Тамара name length - 6
+Виктория name length - 8
+Степан name length - 6
+Георгий name length - 7
+Евгений name length - 7
+Алиса name length - 5
+Яков name length - 4
+Людмила name length - 7
+Аркадий name length - 7
+Илья name length - 4
+Кузьма name length - 6
+Серафима name length - 8
+Виталий name length - 7
+
+aprold@aproldpc:~/test$ cat > file_sum
+1238:1238:93:392:1038:273
+2830:4829:95:38:382:34
+34892:9483:9273:4893:93
+34885:8439:5903:9530:95
+94389:9503:9530:9304:9509:958
+aprold@aproldpc:~/test$ cat > script.awk
+{
+sm = 0
+for (i=1; i <= NF; i++) sm += $i
+print FNR ") " sm 
+}
+aprold@aproldpc:~/test$ awk -F: -f script.awk file_sum
+1) 4272
+2) 8208
+3) 58634
+4) 58852
+5) 133193
+
+aprold@aproldpc:~/test$ cat > script.awk
+function sum_digits(n) {
+	sm = 0
+	for (j=1; j <= length(n); j++) {
+		sm += int(substr(n, j, 1))
+	}
+	return sm
+}
+{
+sm_all=0
+for (i=1; i <= NF; i++) sm_all += sum_digits($i) 
+print FNR ") " sm_all
+}
+aprold@aproldpc:~/test$ awk -F: -f script.awk file_sum
+1) 78
+2) 81
+3) 107
+4) 100
+5) 128
+
+aprold@aproldpc:~/test$ cat > script.awk
+BEGIN {
+	print strftime()
+	for (i=0; i < ARGC; i++) print ARGV[i]
+}
+aprold@aproldpc:~/test$ awk -f script.awk file file2
+Sat Feb 26 22:45:26 2022
+awk
+file
+file2
+
+aprold@aproldpc:~/test$ cat > script.awk
+function randint(mn, mx) {
+	return int(rand()*(mx-mn) + mn)
+}
+BEGIN {
+	m[0] = 10  # number of gen numbers
+	m[1] = 0  # min gen number
+	m[2] = 100  # max gen number
+	for (i=1; i < ARGC && i < 4; i++) m[i-1] = ARGV[i]
+	for (i=0; i < m[0]; i++) print randint(m[1], m[2])
+}
+aprold@aproldpc:~/test$ awk -f script.awk
+79
+21
+2
+82
+33
+69
+21
+17
+58
+65
+aprold@aproldpc:~/test$ awk -f script.awk 5
+68
+79
+17
+86
+87
+aprold@aproldpc:~/test$ awk -f script.awk 5 80 90
+89
+87
+88
+81
+80
+aprold@aproldpc:~/test$ awk -W rand=1 -f script.awk 5 80 90; date
+88
+83
+87
+87
+89
+Пн 28 фев 2022 20:53:09 MSK
+aprold@aproldpc:~/test$ awk -W rand=1 -f script.awk 5 80 90; date
+88
+83
+87
+87
+89
+Пн 28 фев 2022 20:53:16 MSK
+
+

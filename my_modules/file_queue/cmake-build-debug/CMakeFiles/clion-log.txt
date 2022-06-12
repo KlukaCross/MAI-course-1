@@ -1,0 +1,4 @@
+/snap/clion/193/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/aprold/Documents/GitHub/MAIwork/1course/my_modules/file_queue -B /home/aprold/Documents/GitHub/MAIwork/1course/my_modules/file_queue/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/aprold/Documents/GitHub/MAIwork/1course/my_modules/file_queue/cmake-build-debug

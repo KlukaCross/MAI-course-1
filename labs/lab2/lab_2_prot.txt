@@ -1,0 +1,225 @@
+aprold@aproldpc:~$ pwd
+/home/aprold
+aprold@aproldpc:~$ ls
+ big_dir     Pictures          snap     Документы     Общедоступные
+ Desktop     Public            Steam    Загрузки     'Рабочий стол'
+ Documents   PycharmProjects   Videos   Изображения   Шаблоны
+ Downloads   Python-3.9.0      Видео    Музыка
+aprold@aproldpc:~$ mkdir lab_dir
+aprold@aproldpc:~$ cd lab_dir
+aprold@aproldpc:~/lab_dir$ mkdir udir1
+aprold@aproldpc:~/lab_dir$ mkdir udir2
+aprold@aproldpc:~/lab_dir$ touch my_file.txt
+aprold@aproldpc:~/lab_dir$ ls
+my_file.txt  udir1  udir2
+aprold@aproldpc:~/lab_dir$ mv my_file.txt udir1
+aprold@aproldpc:~/lab_dir$ cd udir1
+aprold@aproldpc:~/lab_dir/udir1$ ls
+my_file.txt
+aprold@aproldpc:~/lab_dir/udir1$ cp my_file.txt ~/lab_dir/udir2
+aprold@aproldpc:~/lab_dir/udir1$ rm my_file.txt
+aprold@aproldpc:~/lab_dir/udir1$ ls
+aprold@aproldpc:~/lab_dir/udir1$ cd ../udir2
+aprold@aproldpc:~/lab_dir/udir2$ ls
+my_file.txt
+aprold@aproldpc:~/lab_dir/udir2$ cp my_file.txt my_file_copy.txt
+aprold@aproldpc:~/lab_dir/udir2$ mv my_file.txt to_dir
+aprold@aproldpc:~/lab_dir/udir2$ ls
+my_file_copy.txt  to_dir
+aprold@aproldpc:~/lab_dir/udir2$ cd ..
+aprold@aproldpc:~/lab_dir$ rm -r udir2
+aprold@aproldpc:~/lab_dir$ rmdir udir1
+aprold@aproldpc:~/lab_dir$ ls
+aprold@aproldpc:~/lab_dir$ mkdir dir_without_space "dir with space" "dir one \\slash" 'dir two \\slash' "dir with my name `whoami`"
+aprold@aproldpc:~/lab_dir$ ls
+'dir one \slash'   'dir with my name aprold'  'dir with space'
+'dir two \\slash'   dir_without_space
+aprold@aproldpc:~/lab_dir$ rmdir dir_without_space "dir with space" "dir one \\slash" 'dir two \\slash' "dir with my name `whoami`"
+aprold@aproldpc:~/lab_dir$ ls
+aprold@aproldpc:~/lab_dir$ echo $?
+0
+aprold@aproldpc:~/lab_dir$ cd my_dir
+bash: cd: my_dir: Нет такого файла или каталога
+aprold@aproldpc:~/lab_dir$ echo $?
+1
+aprold@aproldpc:~/lab_dir$ cd my_dir || mkdir my_dir
+bash: cd: my_dir: Нет такого файла или каталога
+aprold@aproldpc:~/lab_dir$ ls
+my_dir
+aprold@aproldpc:~/lab_dir$ mkdir my_dir2 || mkdir my_dir3
+aprold@aproldpc:~/lab_dir$ ls
+my_dir  my_dir2
+aprold@aproldpc:~/lab_dir$ mkdir my_dir3 && mkdir my_dir4
+aprold@aproldpc:~/lab_dir$ ls
+my_dir  my_dir2  my_dir3  my_dir4
+aprold@aproldpc:~/lab_dir$ cat > my_text.txt
+Я могу писать  
+сколько угодно строк
+пока не прерву ввод
+^Z
+[1]+  Остановлен    cat > my_text.txt
+aprold@aproldpc:~/lab_dir$ cat >> my_text.txt
+Я дополняю строки  
+DDD
+Не затираю файл 
+end^Z
+[2]+  Остановлен    cat >> my_text.txt
+aprold@aproldpc:~/lab_dir$ cat my_text.txt
+Я могу писать
+сколько угодно строк
+пока не прерву ввод
+Я дополняю строки 
+DDD
+Не затираю файл
+aprold@aproldpc:~/lab_dir$ ls 2> errors.txt
+errors.txt  my_dir  my_dir2  my_dir3  my_dir4  my_text.txt
+aprold@aproldpc:~/lab_dir$ cat errors.txt
+aprold@aproldpc:~/lab_dir$ cd dira 2> errors.txt
+aprold@aproldpc:~/lab_dir$ cat errors.txt
+bash: cd: dira: Нет такого файла или каталога
+aprold@aproldpc:~/lab_dir$ cat << fff >> my_text.txt
+> Дополняю
+> строки
+> пока не встретится
+> три fff
+> fff
+aprold@aproldpc:~/lab_dir$ cat my_text.txt
+Я могу писать
+сколько угодно строк
+пока не прерву ввод
+Я дополняю строки 
+DDD
+Не затираю файл
+Дополняю
+строки
+пока не встретится
+три fff
+aprold@aproldpc:~/lab_dir$ cat <<< "Добавлю одну строчку в файл" >> my_text.txt
+aprold@aproldpc:~/lab_dir$ cat < my_text.txt
+Я могу писать
+сколько угодно строк
+пока не прерву ввод
+Я дополняю строки 
+DDD
+Не затираю файл
+Дополняю
+строки
+пока не встретится
+три fff
+Добавлю одну строчку в файл
+aprold@aproldpc:~/lab_dir$ ls > my_text.txt
+aprold@aproldpc:~/lab_dir$ cat my_text.txt
+errors.txt
+my_dir
+my_dir2
+my_dir3
+my_dir4
+my_text.txt
+aprold@aproldpc:~/lab_dir$ cat < my_text.txt | sort -r | head -n 3 > reverse3.txt
+aprold@aproldpc:~/lab_dir$ cat reverse3.txt
+my_text.txt
+my_dir4
+my_dir3
+aprold@aproldpc:~/lab_dir$ a=100
+aprold@aproldpc:~/lab_dir$ echo a
+a
+aprold@aproldpc:~/lab_dir$ echo $a
+100
+aprold@aproldpc:~/lab_dir$ echo $((a*5))
+500
+aprold@aproldpc:~/lab_dir$ mkdir $(whoami)_$a
+aprold@aproldpc:~/lab_dir$ ls
+aprold_100  my_dir   my_dir3  my_text.txt
+errors.txt  my_dir2  my_dir4  reverse3.txt
+aprold@aproldpc:~/lab_dir$ mkdir {a..c}dir{1..10}
+aprold@aproldpc:~/lab_dir$ ls
+adir1   adir5  aprold_100  bdir4  bdir9   cdir4  cdir9       my_dir4
+adir10  adir6  bdir1       bdir5  cdir1   cdir5  errors.txt  my_text.txt
+adir2   adir7  bdir10      bdir6  cdir10  cdir6  my_dir      reverse3.txt
+adir3   adir8  bdir2       bdir7  cdir2   cdir7  my_dir2
+adir4   adir9  bdir3       bdir8  cdir3   cdir8  my_dir3
+aprold@aproldpc:~/lab_dir$ ls -d [a-b]dir[3-5]
+adir3  adir4  adir5  bdir3  bdir4  bdir5
+aprold@aproldpc:~/lab_dir$ ls -d adir*
+adir1  adir10  adir2  adir3  adir4  adir5  adir6  adir7  adir8  adir9
+aprold@aproldpc:~/lab_dir$ ls -d ?dir??
+adir10  bdir10  cdir10
+aprold@aproldpc:~/lab_dir$ ls -d {a,c}dir?
+adir1  adir3  adir5  adir7  adir9  cdir2  cdir4  cdir6  cdir8
+adir2  adir4  adir6  adir8  cdir1  cdir3  cdir5  cdir7  cdir9
+aprold@aproldpc:~/lab_dir$ chmod u-x adir1
+aprold@aproldpc:~/lab_dir$ cd adir1
+bash: cd: adir1: Отказано в доступе
+aprold@aproldpc:~/lab_dir$ chmod u+x adir1
+aprold@aproldpc:~/lab_dir$ cd adir1
+aprold@aproldpc:~/lab_dir/adir1$ mkdir new_dir
+aprold@aproldpc:~/lab_dir/adir1$ chmod u-w ../adir1
+aprold@aproldpc:~/lab_dir/adir1$ mkdir new_dir2
+mkdir: невозможно создать каталог «new_dir2»: Отказано в доступе
+aprold@aproldpc:~/lab_dir/adir1$ cd ..
+aprold@aproldpc:~/lab_dir$ rm -r adir1
+rm: спуститься в защищённый от записи каталог 'adir1'? y
+rm: удалить защищённый от записи каталог 'adir1'? y
+rm: невозможно удалить 'adir1': Отказано в доступе
+aprold@aproldpc:~/lab_dir$ ls adir1
+ls: невозможно открыть каталог 'adir1': Отказано в доступе
+aprold@aproldpc:~/lab_dir$ chmod u-r my_text.txt
+aprold@aproldpc:~/lab_dir$ cat my_text.txt
+cat: my_text.txt: Отказано в доступе
+aprold@aproldpc:~/lab_dir$ chmod +r my_text.txt
+aprold@aproldpc:~/lab_dir$ head -n 2 my_text.txt
+errors.txt
+my_dir
+aprold@aproldpc:~/lab_dir$ sleep 100 & sleep 101 & sleep 102 &
+[1] 2515
+[2] 2516
+[3] 2517
+aprold@aproldpc:~/lab_dir$ jobs
+[1]   Запущен          sleep 100 &
+[2]-  Запущен          sleep 101 &
+[3]+  Запущен          sleep 102 &
+aprold@aproldpc:~/lab_dir$ fg 1
+sleep 100
+^Z
+[1]+  Остановлен    sleep 100
+aprold@aproldpc:~/lab_dir$ fg 3
+sleep 102
+^C
+aprold@aproldpc:~/lab_dir$ jobs
+[1]+  Остановлен    sleep 100
+[2]-  Запущен          sleep 101 &
+aprold@aproldpc:~/lab_dir$ ps
+    PID TTY          TIME CMD
+   1796 pts/0    00:00:00 bash
+   2515 pts/0    00:00:00 sleep
+   2516 pts/0    00:00:00 sleep
+   2518 pts/0    00:00:00 ps
+aprold@aproldpc:~/lab_dir$ kill 2516
+aprold@aproldpc:~/lab_dir$ jobs
+[1]+  Остановлен    sleep 100
+[2]-  Завершено      sleep 101
+aprold@aproldpc:~/lab_dir$ bg 1
+[1]+ sleep 100 &
+aprold@aproldpc:~/lab_dir$ jobs
+[1]+  Запущен          sleep 100 &
+aprold@aproldpc:~/lab_dir$ sleep 100
+^Z
+[1]+  Остановлен    sleep 100
+aprold@aproldpc:~/lab_dir$ ps
+    PID TTY          TIME CMD
+   2058 pts/0    00:00:00 bash
+   2308 pts/0    00:00:00 sleep
+   2310 pts/0    00:00:00 ps
+aprold@aproldpc:~/lab_dir$ kill 2308
+aprold@aproldpc:~/lab_dir$ ps
+    PID TTY          TIME CMD
+   2058 pts/0    00:00:00 bash
+   2308 pts/0    00:00:00 sleep
+   2311 pts/0    00:00:00 ps
+aprold@aproldpc:~/lab_dir$ kill -9 2308
+aprold@aproldpc:~/lab_dir$ ps
+    PID TTY          TIME CMD
+   2058 pts/0    00:00:00 bash
+   2312 pts/0    00:00:00 ps
+[1]+  Убито              sleep 100
+

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="list_deque"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/aprold/Documents/GitHub/MAIwork/1 course/my_modules/list_deque/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_deque">
+				<Option output="/home/aprold/Documents/GitHub/MAIwork/1 course/my_modules/list_deque/cmake-build-debug/list_deque" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/aprold/Documents/GitHub/MAIwork/1 course/my_modules/list_deque/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 list_deque"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_deque/fast">
+				<Option output="/home/aprold/Documents/GitHub/MAIwork/1 course/my_modules/list_deque/cmake-build-debug/list_deque" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/aprold/Documents/GitHub/MAIwork/1 course/my_modules/list_deque/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 list_deque/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/aprold/Documents/GitHub/MAIwork/1 course/my_modules/list_deque/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/aprold/Documents/GitHub/MAIwork/1 course/my_modules/list_deque/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1\ course/my_modules/list_deque/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/aprold/Documents/GitHub/MAIwork/1 course/my_modules/list_deque/ddbl.c">
+			<Option target="list_deque"/>
+		</Unit>
+		<Unit filename="/home/aprold/Documents/GitHub/MAIwork/1 course/my_modules/list_deque/ddbl.h">
+			<Option target="list_deque"/>
+		</Unit>
+		<Unit filename="/home/aprold/Documents/GitHub/MAIwork/1 course/my_modules/list_deque/main.c">
+			<Option target="list_deque"/>
+		</Unit>
+		<Unit filename="/home/aprold/Documents/GitHub/MAIwork/1 course/my_modules/list_deque/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

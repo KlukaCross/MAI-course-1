@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/my_static_queue.dir/main.c.o CMakeFiles/my_static_queue.dir/qdbl.c.o -o my_static_queue 

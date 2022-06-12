@@ -1,0 +1,3 @@
+/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/CMakeFiles/my_dynamic_queue.dir
+/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/CMakeFiles/rebuild_cache.dir

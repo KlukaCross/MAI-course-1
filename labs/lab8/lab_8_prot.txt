@@ -1,0 +1,541 @@
+
+
+----------УСПЕШНАЯ ПОЭТАПНАЯ КОМПИЛЯЦИЯ----------
+
+
+aprold@aproldpc:~$ cd /home/aprold/CLionProjects/c_projects/lab8
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ ls
+cmake-build-debug  CMakeLists.txt  main.c  make.c  make.h  options.h
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat main.c make.c
+#include "make.h"
+
+int main() {
+    int height = 8; // height of pyramid
+    make(height);
+    return 0;
+}
+
+#include "make.h"
+
+void make(int h) {
+    printf("Start make %s version %s\n", NAME, VERSION);
+    int c = 1;
+    for (int i=1; i <= h; i++, c+=2) {
+        for (int j=0; j < h-i; j++) {
+            printf(" ");
+        }
+        for (int j=0; j < c; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+    printf("End make %s\n", NAME);
+}
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat make.h options.h
+
+#ifndef LAB8_MAKE_H
+#define LAB8_MAKE_H
+#include <stdio.h>
+#include "options.h"
+void make(int h);
+#endif //LAB8_MAKE_H
+
+#ifndef LAB8_OPTIONS_H
+#define LAB8_OPTIONS_H
+#define VERSION "0.1 alpha"
+#define NAME "Pyramidka"
+#endif
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -E main.c | tail -n 15
+# 873 "/usr/include/stdio.h" 3 4
+
+# 4 "make.h" 2
+# 1 "options.h" 1
+# 5 "make.h" 2
+
+# 5 "make.h"
+void make(int h);
+# 2 "main.c" 2
+
+int main() {
+    int height = 8;
+    make(height);
+    return 0;
+}
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -E make.c | tail -n 20
+# 5 "make.h" 2
+
+# 5 "make.h"
+void make(int h);
+# 2 "make.c" 2
+
+void make(int h) {
+    printf("Start make %s version %s\n", "Pyramidka", "0.1 alpha");
+    int c = 1;
+    for (int i=1; i <= h; i++, c+=2) {
+        for (int j=0; j < h-i; j++) {
+            printf(" ");
+        }
+        for (int j=0; j < c; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+    printf("End make %s\n", "Pyramidka");
+}
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -S main.c make.c
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ ls
+cmake-build-debug  CMakeLists.txt  main.c  main.s  make.c  make.h  make.s  options.h
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -c main.s make.s
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ ls
+cmake-build-debug  CMakeLists.txt  main.c  main.o  main.s  make.c  make.h  make.o  make.s  options.h
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall main.o make.o
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ ls
+a.out              CMakeLists.txt  main.o  make.c  make.o  options.h
+cmake-build-debug  main.c          main.s  make.h  make.s
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ ./a.out
+Start make Pyramidka version 0.1 alpha
+       *
+      ***
+     *****
+    *******
+   *********
+  ***********
+ *************
+***************
+End make Pyramidka
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ 
+
+
+----------ЭТАП ПРЕПРОЦЕССИНГА----------
+
+
+-----ОШИБКА 1-----
+
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat main.c
+#include "NoneFile.h"
+
+int main() {
+    int height = 8; // height of pyramid
+    make(height);
+    return 0;
+}
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -E main.c
+# 1 "main.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 31 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 32 "<command-line>" 2
+# 1 "main.c"
+main.c:1:10: fatal error: NoneFile.h: Нет такого файла или каталога
+    1 | #include "NoneFile.h"
+      |          ^~~~~~~~~~~~
+compilation terminated.
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat main.c
+#include "make.h"
+
+int main() {
+    int height = 8; // height of pyramid
+    make(height);
+    return 0;
+}
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -E main.c | tail -n 15
+# 873 "/usr/include/stdio.h" 3 4
+
+# 4 "make.h" 2
+# 1 "options.h" 1
+# 5 "make.h" 2
+
+# 5 "make.h"
+void make(int h);
+# 2 "main.c" 2
+
+int main() {
+    int height = 8;
+    make(height);
+    return 0;
+}
+
+
+-----ОШИБКА 2-----
+
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat main.c
+#include "make.h"
+#Noneprep
+
+int main() {
+    int height = 8; // height of pyramid
+    make(height);
+    return 0;
+}
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -E main.c | tail -n 15
+main.c:2:2: error: invalid preprocessing directive #Noneprep
+    2 | #Noneprep
+      |  ^~~~~~~~
+
+# 4 "make.h" 2
+# 1 "options.h" 1
+# 5 "make.h" 2
+
+# 5 "make.h"
+void make(int h);
+# 2 "main.c" 2
+
+
+int main() {
+    int height = 8;
+    make(height);
+    return 0;
+}
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat main.c
+#include "make.h"
+
+int main() {
+    int height = 8; // height of pyramid
+    make(height);
+    return 0;
+}
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -E main.c | tail -n 15
+# 873 "/usr/include/stdio.h" 3 4
+
+# 4 "make.h" 2
+# 1 "options.h" 1
+# 5 "make.h" 2
+
+# 5 "make.h"
+void make(int h);
+# 2 "main.c" 2
+
+int main() {
+    int height = 8;
+    make(height);
+    return 0;
+}
+
+
+----------ЭТАП КОМПИЛЯЦИИ В АССЕМБЛЕР----------
+
+
+-----ОШИБКА 1-----
+
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat main.c
+#include "make.h"
+
+int main() {
+    int height = 8; // height of pyramid
+    make(height)
+    return 0;
+}
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -E main.c | tail -n 15
+# 873 "/usr/include/stdio.h" 3 4
+
+# 4 "make.h" 2
+# 1 "options.h" 1
+# 5 "make.h" 2
+
+# 5 "make.h"
+void make(int h);
+# 2 "main.c" 2
+
+int main() {
+    int height = 8;
+    make(height)
+    return 0;
+}
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -S main.c
+main.c: In function ‘main’:
+main.c:5:17: error: expected ‘;’ before ‘return’
+    5 |     make(height)
+      |                 ^
+      |                 ;
+    6 |     return 0;
+      |     ~~~~~~       
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat main.c
+#include "make.h"
+
+int main() {
+    int height = 8; // height of pyramid
+    make(height);
+    return 0;
+}
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -S main.c
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ 
+
+
+-----ОШИБКА 2-----
+
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat main.c
+#include "make.h"
+
+int main() {
+    make(height);
+    return 0;
+}
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -E main.c | tail
+# 5 "make.h" 2
+
+# 5 "make.h"
+void make(int h);
+# 2 "main.c" 2
+
+int main() {
+    make(height);
+    return 0;
+}
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -S main.c | tail
+main.c: In function ‘main’:
+main.c:4:10: error: ‘height’ undeclared (first use in this function)
+    4 |     make(height);
+      |          ^~~~~~
+main.c:4:10: note: each undeclared identifier is reported only once for each function it appears in
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat main.c
+#include "make.h"
+
+int main() {
+    int height = 8; // height of pyramid
+    make(height);
+    return 0;
+}
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -S main.c
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ 
+
+
+----------ЭТАП АССЕМБЛИРОВАНИЯ----------
+
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat main.c
+#include "make.h"
+
+int main() {
+    int height = 8; // height of pyramid
+    make(height);
+    __asm__("none");
+    return 0;
+}
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -S main.c
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -c main.c
+main.c: Сообщения ассемблера:
+main.c:6: Ошибка: такая инструкция не существует: «none»
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat main.c
+#include "make.h"
+
+int main() {
+    int height = 8; // height of pyramid
+    make(height);
+    return 0;
+}
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -c main.c
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ 
+
+
+----------ЭТАП ЛИНКОВКИ----------
+
+
+-----ОШИБКА 1-----
+
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat make.c
+#include "make.h"
+
+void F() {
+    printf("useless Func");
+}
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -c main.c make.c
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall main.o make.o
+/usr/bin/ld: main.o: в функции «main»:
+main.c:(.text+0x19): неопределённая ссылка на «make»
+collect2: error: ld returned 1 exit status
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat make.c
+#include "make.h"
+
+void make(int h) {
+    printf("Start make %s version %s\n", NAME, VERSION);
+    int c = 1;
+    for (int i=1; i <= h; i++, c+=2) {
+        for (int j=0; j < h-i; j++) {
+            printf(" ");
+        }
+        for (int j=0; j < c; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+    printf("End make %s\n", NAME);
+}
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -c main.c make.c
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall main.o make.o
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ 
+
+
+
+-----ОШИБКА 2-----
+
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat make.h
+#ifndef LAB8_MAKE_H
+#define LAB8_MAKE_H
+#include <stdio.h>
+#include "options.h"
+void make(int h) {
+    printf("Start make %s version %s\n", NAME, VERSION);
+    int c = 1;
+    for (int i=1; i <= h; i++, c+=2) {
+        for (int j=0; j < h-i; j++) {
+            printf(" ");
+        }
+        for (int j=0; j < c; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+    printf("End make %s\n", NAME);
+}
+#endif //LAB8_MAKE_H
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat make.c
+#include <stdio.h>
+void make(int h) {
+    for (int i=0;i<h;i++){
+        printf("*");
+    }
+}
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -c main.c make.c
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall main.o make.o
+/usr/bin/ld: make.o: в функции «make»:
+make.c:(.text+0x0): повторное определение «make»; main.o:main.c:(.text+0x0): здесь первое определение
+collect2: error: ld returned 1 exit status
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat make.h
+#ifndef LAB8_MAKE_H
+#define LAB8_MAKE_H
+#include <stdio.h>
+#include "options.h"
+void make(int h);
+#endif //LAB8_MAKE_H
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat make.c
+#include "make.h"
+
+void make(int h) {
+    printf("Start make %s version %s\n", NAME, VERSION);
+    int c = 1;
+    for (int i=1; i <= h; i++, c+=2) {
+        for (int j=0; j < h-i; j++) {
+            printf(" ");
+        }
+        for (int j=0; j < c; j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+    printf("End make %s\n", NAME);
+}
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall -c main.c make.c
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall main.o make.o
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ 
+
+
+
+----------ЭТАП ВЫПОЛНЕНИЯ ПРОГРАММЫ----------
+
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat make.h
+#ifndef LAB8_MAKE_H
+#define LAB8_MAKE_H
+#include <stdio.h>
+#include "options.h"
+void make(int max_h, int num_pyr);
+#endif //LAB8_MAKE_H
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat make.c
+#include "make.h"
+
+void make(int max_h, int max_pyr) {
+    printf("Start make %s version %s\n", NAME, VERSION);
+    int h = max_h/max_pyr;
+    for (int n=0; n<max_pyr; n++) {
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < h - i-1; j++) {
+                printf(" ");
+            }
+            for (int j = 0; j < 2 * i + 1; j++) {
+                printf("*");
+            }
+            printf("\n");
+        }
+    }
+    printf("End make %s\n", NAME);
+}
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat main.c
+#include "make.h"
+
+int main() {
+    int max_height = 10;
+    int num_pyramids = 0;
+    make(max_height, num_pyramids);
+    return 0;
+}
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall main.c make.c
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ ./a.out
+Start make Pyramidki version 0.2 beta
+Исключение в операции с плавающей точкой (стек памяти сброшен на диск)
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat main.c
+#include "make.h"
+
+int main() {
+    int max_height = 10;
+    int num_pyramids = 0;
+    if (num_pyramids <= 0) {
+        printf("num_pyramids must be > 0\n");
+        return 0;
+    }
+    make(max_height, num_pyramids);
+    return 0;
+}
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall main.c make.c
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ ./a.out
+num_pyramids must be > 0
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ cat main.c
+#include "make.h"
+
+int main() {
+    int max_height = 10;
+    int num_pyramids = 2;
+    if (num_pyramids <= 0) {
+        printf("num_pyramids must be > 0\n");
+        return 0;
+    }
+    make(max_height, num_pyramids);
+    return 0;
+}
+
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ gcc -std=c99 -pedantic -Wall main.c make.c
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ ./a.out
+Start make Pyramidki version 0.2 beta
+    *
+   ***
+  *****
+ *******
+*********
+    *
+   ***
+  *****
+ *******
+*********
+End make Pyramidki
+aprold@aproldpc:~/CLionProjects/c_projects/lab8$ 
+

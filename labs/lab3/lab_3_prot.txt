@@ -1,0 +1,468 @@
+1. sftp
+
+aprold@aproldpc:~$ sftp ubuntuserver@192.168.0.27
+ubuntuserver@192.168.0.27's password: 
+Connected to 192.168.0.27.
+sftp> ls
+test_dir  
+sftp> lls
+ big_dir     Pictures	       Steam	   Загрузки	   Шаблоны
+ Desktop     Public	       test	   Изображения
+ Documents   PycharmProjects   Videos	   Музыка
+ Downloads   Python-3.9.0      Видео	   Общедоступные
+ lab_dir     snap	       Документы  'Рабочий стол'
+sftp> lcd lab_dir
+sftp> lls
+adir1	adir5  aprold_100  bdir4  bdir9   cdir4  cdir9	     my_dir4
+adir10	adir6  bdir1	   bdir5  cdir1   cdir5  errors.txt  my_text.txt
+adir2	adir7  bdir10	   bdir6  cdir10  cdir6  my_dir      reverse3.txt
+adir3	adir8  bdir2	   bdir7  cdir2   cdir7  my_dir2
+adir4	adir9  bdir3	   bdir8  cdir3   cdir8  my_dir3
+sftp> put my_text.txt
+Uploading my_text.txt to /home/ubuntuserver/my_text.txt
+my_text.txt                                        100%   54     4.9KB/s   00:00    
+sftp> put -r ../lab_dir new_dir
+Uploading ../lab_dir/ to /home/ubuntuserver/new_dir
+Entering ../lab_dir/
+Entering ../lab_dir/adir2
+Entering ../lab_dir/adir1
+Failed to open dir "../lab_dir/adir1": Permission denied
+../lab_dir/my_text.txt                             100%   54     5.6KB/s   00:00    
+Entering ../lab_dir/cdir9
+Entering ../lab_dir/cdir1
+../lab_dir/errors.txt                              100%   71    17.0KB/s   00:00    
+Entering ../lab_dir/adir5
+Entering ../lab_dir/bdir8
+Entering ../lab_dir/my_dir2
+Entering ../lab_dir/adir9
+Entering ../lab_dir/bdir10
+Entering ../lab_dir/cdir3
+Entering ../lab_dir/my_dir
+Entering ../lab_dir/cdir8
+Entering ../lab_dir/bdir9
+Entering ../lab_dir/bdir7
+Entering ../lab_dir/adir4
+Entering ../lab_dir/cdir5
+Entering ../lab_dir/cdir2
+Entering ../lab_dir/bdir6
+Entering ../lab_dir/adir3
+Entering ../lab_dir/bdir3
+Entering ../lab_dir/cdir6
+../lab_dir/reverse3.txt                            100%   28     9.3KB/s   00:00    
+Entering ../lab_dir/adir10
+Entering ../lab_dir/cdir7
+Entering ../lab_dir/bdir2
+Entering ../lab_dir/adir6
+Entering ../lab_dir/cdir4
+Entering ../lab_dir/bdir1
+Entering ../lab_dir/bdir4
+Entering ../lab_dir/aprold_100
+Entering ../lab_dir/my_dir3
+Entering ../lab_dir/adir8
+Entering ../lab_dir/bdir5
+Entering ../lab_dir/my_dir4
+Entering ../lab_dir/adir7
+Entering ../lab_dir/cdir10
+sftp> ls
+my_text.txt   new_dir       test_dir  
+sftp> get -r new_dir
+Fetching /home/ubuntuserver/new_dir/ to new_dir
+Retrieving /home/ubuntuserver/new_dir
+Retrieving /home/ubuntuserver/new_dir/cdir5
+Retrieving /home/ubuntuserver/new_dir/adir7
+Retrieving /home/ubuntuserver/new_dir/aprold_100
+Retrieving /home/ubuntuserver/new_dir/cdir7
+Retrieving /home/ubuntuserver/new_dir/cdir10
+Retrieving /home/ubuntuserver/new_dir/bdir9
+Retrieving /home/ubuntuserver/new_dir/bdir4
+Retrieving /home/ubuntuserver/new_dir/my_dir
+Retrieving /home/ubuntuserver/new_dir/bdir1
+Retrieving /home/ubuntuserver/new_dir/adir8
+Retrieving /home/ubuntuserver/new_dir/adir10
+Retrieving /home/ubuntuserver/new_dir/adir3
+Retrieving /home/ubuntuserver/new_dir/my_dir2
+Retrieving /home/ubuntuserver/new_dir/cdir2
+Retrieving /home/ubuntuserver/new_dir/cdir6
+Retrieving /home/ubuntuserver/new_dir/bdir3
+Retrieving /home/ubuntuserver/new_dir/cdir4
+Retrieving /home/ubuntuserver/new_dir/cdir3
+/home/ubuntuserver/new_dir/my_text.txt             100%   54    10.5KB/s   00:00    
+Retrieving /home/ubuntuserver/new_dir/my_dir4
+/home/ubuntuserver/new_dir/errors.txt              100%   71     9.7KB/s   00:00    
+/home/ubuntuserver/new_dir/reverse3.txt            100%   28     5.9KB/s   00:00    
+Retrieving /home/ubuntuserver/new_dir/adir2
+Retrieving /home/ubuntuserver/new_dir/bdir10
+Retrieving /home/ubuntuserver/new_dir/bdir2
+Retrieving /home/ubuntuserver/new_dir/bdir6
+Retrieving /home/ubuntuserver/new_dir/cdir8
+Retrieving /home/ubuntuserver/new_dir/bdir7
+Retrieving /home/ubuntuserver/new_dir/adir1
+remote readdir("/home/ubuntuserver/new_dir/adir1"): Permission denied
+/home/ubuntuserver/new_dir/adir1: Failed to get directory contents
+Retrieving /home/ubuntuserver/new_dir/bdir8
+Retrieving /home/ubuntuserver/new_dir/adir6
+Retrieving /home/ubuntuserver/new_dir/adir5
+Retrieving /home/ubuntuserver/new_dir/my_dir3
+Retrieving /home/ubuntuserver/new_dir/cdir9
+Retrieving /home/ubuntuserver/new_dir/adir9
+Retrieving /home/ubuntuserver/new_dir/bdir5
+Retrieving /home/ubuntuserver/new_dir/adir4
+Retrieving /home/ubuntuserver/new_dir/cdir1
+sftp> get my_text.txt new_text.txt
+Fetching /home/ubuntuserver/my_text.txt to new_text.txt
+/home/ubuntuserver/my_text.txt                     100%   54     4.2KB/s   00:00    
+sftp> lls
+adir1	adir5  aprold_100  bdir4  bdir9   cdir4  cdir9	     my_dir4
+adir10	adir6  bdir1	   bdir5  cdir1   cdir5  errors.txt  my_text.txt
+adir2	adir7  bdir10	   bdir6  cdir10  cdir6  my_dir      new_text.txt
+adir3	adir8  bdir2	   bdir7  cdir2   cdir7  my_dir2     reverse3.txt
+adir4	adir9  bdir3	   bdir8  cdir3   cdir8  my_dir3
+sftp> mput *.txt
+Uploading errors.txt to /home/ubuntuserver/errors.txt
+errors.txt                                    100%   71    14.3KB/s   00:00    
+Uploading my_text.txt to /home/ubuntuserver/my_text.txt
+my_text.txt                                   100%   54    10.5KB/s   00:00    
+Uploading reverse3.txt to /home/ubuntuserver/reverse3.txt
+reverse3.txt                                  100%   28     3.9KB/s   00:00 
+sftp> ls
+ls\012                                        -2147483648%   86TB   0.0KB/s   -Documents           errors.txt          my_ipconfig.txt     my_text.txt         
+new_dir             ping.txt            reverse3.txt        test_dir            
+whoami.txt          Документы  
+sftp> cd Документы
+sftp> ls
+Documents         lab_2.odg         lab_2.otg         lab_2_prot.txt    lab_3_prot.txt    
+my_scripts        testing           
+sftp> mget lab*
+Fetching /home/ubuntuserver/Документы/lab_2.odg to lab_2.odg
+/home/ubuntuserver/Документы/lab_2.odg          100%   17KB 816.1KB/s   00:00    
+Fetching /home/ubuntuserver/Документы/lab_2.otg to lab_2.otg
+/home/ubuntuserver/Документы/lab_2.otg          100%   23KB   2.3MB/s   00:00    
+Fetching /home/ubuntuserver/Документы/lab_2_prot.txt to lab_2_prot.txt
+/home/ubuntuserver/Документы/lab_2_prot.txt     100% 8284   961.5KB/s   00:00    
+Fetching /home/ubuntuserver/Документы/lab_3_prot.txt to lab_3_prot.txt
+/home/ubuntuserver/Документы/lab_3_prot.txt     100% 4942   514.1KB/s   00:00    
+sftp> lls
+adir1	adir6	    bdir10  bdir7   cdir3  cdir9	   my_dir	reverse3.txt
+adir10	adir7	    bdir2   bdir8   cdir4  errors.txt	   my_dir2
+adir2	adir8	    bdir3   bdir9   cdir5  lab_2.odg	   my_dir3
+adir3	adir9	    bdir4   cdir1   cdir6  lab_2.otg	   my_dir4
+adir4	aprold_100  bdir5   cdir10  cdir7  lab_2_prot.txt  my_text.txt
+adir5	bdir1	    bdir6   cdir2   cdir8  lab_3_prot.txt  new_dir
+sftp> !
+aprold@aproldpc:~/lab_dir$ exit
+exit
+sftp> !
+aprold@aproldpc:~/lab_dir$ ls
+adir1   adir5  aprold_100  bdir4  bdir9   cdir4  cdir9           lab_3_prot.txt  my_text.txt
+adir10  adir6  bdir1       bdir5  cdir1   cdir5  errors.txt      my_dir          new_dir
+adir2   adir7  bdir10      bdir6  cdir10  cdir6  lab_2.odg       my_dir2         reverse3.txt
+adir3   adir8  bdir2       bdir7  cdir2   cdir7  lab_2.otg       my_dir3
+adir4   adir9  bdir3       bdir8  cdir3   cdir8  lab_2_prot.txt  my_dir4
+aprold@aproldpc:~/lab_dir$ exit
+exit
+sftp> !ls
+adir1	adir5  aprold_100  bdir4  bdir9   cdir4  cdir9		 lab_3_prot.txt  my_text.txt
+adir10	adir6  bdir1	   bdir5  cdir1   cdir5  errors.txt	 my_dir		 new_dir
+adir2	adir7  bdir10	   bdir6  cdir10  cdir6  lab_2.odg	 my_dir2	 reverse3.txt
+adir3	adir8  bdir2	   bdir7  cdir2   cdir7  lab_2.otg	 my_dir3
+adir4	adir9  bdir3	   bdir8  cdir3   cdir8  lab_2_prot.txt  my_dir4
+sftp> !cat my_text.txt
+errors.txt
+my_dir
+my_dir2
+my_dir3
+my_dir4
+my_text.txt
+sftp> !rm -r ?dir*
+rm: спуститься в защищённый от записи каталог 'adir1'? n
+sftp> !
+aprold@aproldpc:~/lab_dir$ ls
+adir1       errors.txt  lab_2.otg       lab_3_prot.txt  my_dir2  my_dir4      new_dir
+aprold_100  lab_2.odg   lab_2_prot.txt  my_dir          my_dir3  my_text.txt  reverse3.txt
+aprold@aproldpc:~/lab_dir$ exit
+sftp> pwd
+Remote working directory: /home/ubuntuserver
+sftp> cd ..
+sftp> ls
+ubuntuserver  
+sftp> mkdir my_dire
+Couldn't create directory: Permission denied
+sftp> cd /
+sftp> ls
+bin         boot        cdrom       dev         etc         home        lib         lib32       
+lib64       libx32      lost+found  media       mnt         opt         proc        root        
+run         sbin        snap        srv         swap.img    sys         tmp         usr         
+var         
+sftp> cd dev
+sftp> cd ..
+sftp> cd home
+sftp> ls
+ubuntuserver  
+sftp> cd ubuntuserver
+sftp> ls
+Documents           errors.txt          my_ipconfig.txt     my_text.txt         new_dir             
+ping.txt            reverse3.txt        test_dir            whoami.txt          Документы  
+sftp> cd new_dir
+sftp> ls
+adir1         adir10        adir2         adir3         adir4         adir5         adir6         
+adir7         adir8         adir9         aprold_100    bdir1         bdir10        bdir2         
+bdir3         bdir4         bdir5         bdir6         bdir7         bdir8         bdir9         
+cdir1         cdir10        cdir2         cdir3         cdir4         cdir5         cdir6         
+cdir7         cdir8         cdir9         errors.txt    my_dir        my_dir2       my_dir3       
+my_dir4       my_text.txt   reverse3.txt  
+sftp> bye
+
+---------------------------------------------------------------------------------
+
+2. ssh
+
+aprold@aproldpc:~$ ssh ubuntuserver@192.168.0.27
+ubuntuserver@192.168.0.27's password: 
+Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-81-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sat 25 Sep 2021 04:31:07 PM UTC
+
+  System load:  0.0               Processes:               107
+  Usage of /:   42.1% of 8.79GB   Users logged in:         1
+  Memory usage: 20%               IPv4 address for enp0s3: 192.168.0.27
+  Swap usage:   0%
+
+
+0 updates can be applied immediately.
+
+
+Last login: Sat Sep 25 15:47:52 2021 from 192.168.0.17
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntuserver@ubuntu-server:~$ ls
+my_text.txt  new_dir  test_dir
+ubuntuserver@ubuntu-server:~$ cd test_dir
+ubuntuserver@ubuntu-server:~/test_dir$ ifconfig > ipconfig.txt
+
+Command 'ifconfig' not found, but can be installed with:
+
+sudo apt install net-tools
+
+ubuntuserver@ubuntu-server:~/test_dir$ sudo apt install net-tools
+[sudo] password for ubuntuserver: 
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following NEW packages will be installed:
+  net-tools
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 196 kB of archives.
+After this operation, 864 kB of additional disk space will be used.
+Get:1 http://ru.archive.ubuntu.com/ubuntu focal/main amd64 net-tools amd64 1.60+git20180626.aebd88e-1ubuntu1 [196 kB]
+Fetched 196 kB in 0s (3823 kB/s)
+Selecting previously unselected package net-tools.
+(Reading database ... 71460 files and directories currently installed.)
+Preparing to unpack .../net-tools_1.60+git20180626.aebd88e-1ubuntu1_amd64.deb ...
+Unpacking net-tools (1.60+git20180626.aebd88e-1ubuntu1) ...
+Setting up net-tools (1.60+git20180626.aebd88e-1ubuntu1) ...
+Processing triggers for man-db (2.9.1-1) ...
+ubuntuserver@ubuntu-server:~/test_dir$ ifconfig > ipconfig.txt
+ubuntuserver@ubuntu-server:~/test_dir$ cat ipconfig.txt
+enp0s3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.0.27  netmask 255.255.255.0  broadcast 192.168.0.255
+        inet6 fe80::a00:27ff:fe0d:3b69  prefixlen 64  scopeid 0x20<link>
+        ether 08:00:27:0d:3b:69  txqueuelen 1000  (Ethernet)
+        RX packets 2479  bytes 1304273 (1.3 MB)
+        RX errors 0  dropped 4  overruns 0  frame 0
+        TX packets 1614  bytes 216785 (216.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 120  bytes 9826 (9.8 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 120  bytes 9826 (9.8 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ubuntuserver@ubuntu-server:~/test_dir$ exit
+logout
+Connection to 192.168.0.27 closed.
+
+---------------------------------------------------------------------------------
+
+3. scp
+
+aprold@aproldpc:~$ mkdir lab_dir2
+aprold@aproldpc:~$ cd lab_dir2
+aprold@aproldpc:~/lab_dir2$ scp -r ubuntuserver@192.168.0.27:test_dir .
+ubuntuserver@192.168.0.27's password: 
+ipconfig.txt                                         100%  882   138.5KB/s   00:00  
+aprold@aproldpc:~/lab_dir2$ ls
+test_dir
+aprold@aproldpc:~/lab_dir2$ ls test_dir
+ipconfig.txt
+aprold@aproldpc:~/lab_dir2$ ip a > my_ipconfig.txt
+aprold@aproldpc:~/lab_dir2$ ping 192.168.0.27 > ping.txt
+aprold@aproldpc:~/lab_dir2$ whoami > whoami.txt
+aprold@aproldpc:~/lab_dir2$ ls
+my_ipconfig.txt  ping.txt  test_dir  whoami.txt
+aprold@aproldpc:~/lab_dir2$ scp -r *.txt ../"Документы" ubuntuserver@192.168.0.27:.
+ubuntuserver@192.168.0.27's password: 
+my_ipconfig.txt                                      100%  710   101.3KB/s   00:00    
+ping.txt                                             100%  567    94.5KB/s   00:00    
+whoami.txt                                           100%    7     1.1KB/s   00:00    
+date.sh                                              100%  281    11.8KB/s   00:00    
+my_script.sh                                         100%  213    46.5KB/s   00:00    
+LOGFILE                                              100%  215    28.4KB/s   00:00    
+lab_2_prot.txt                                       100% 8284   733.8KB/s   00:00    
+lab_3_prot.txt                                       100% 4942   583.3KB/s   00:00    
+lab_2.otg                                            100%   23KB 660.5KB/s   00:00    
+lab_2.odg                                            100%   17KB   2.3MB/s   00:00    
+test_file                                            100%   89    16.0KB/s   00:00    
+aprold@aproldpc:~/lab_dir2$ ssh ubuntuserver@192.168.0.27
+ubuntuserver@192.168.0.27's password: 
+Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-81-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Sat 25 Sep 2021 05:02:08 PM UTC
+
+  System load:  0.0               Processes:               107
+  Usage of /:   42.1% of 8.79GB   Users logged in:         1
+  Memory usage: 21%               IPv4 address for enp0s3: 192.168.0.27
+  Swap usage:   0%
+
+
+0 updates can be applied immediately.
+
+
+Last login: Sat Sep 25 16:31:07 2021 from 192.168.0.17
+ubuntuserver@ubuntu-server:~$ ls
+my_ipconfig.txt  my_text.txt  new_dir  ping.txt  test_dir  whoami.txt  Документы
+ubuntuserver@ubuntu-server:~$ logout
+Connection to 192.168.0.27 closed.
+
+---------------------------------------------------------------------------------
+
+4. tar, gzip
+
+aprold@aproldpc:~/lab_dir2$ tar -c -f my_info.tar my_ipconfig.txt whoami.txt
+aprold@aproldpc:~/lab_dir2$ tar -t -f my_info.tar
+my_ipconfig.txt
+whoami.txt
+aprold@aproldpc:~/lab_dir2$ tar -C test_dir -xf my_info.tar
+aprold@aproldpc:~/lab_dir2$ ls test_dir
+ipconfig.txt  my_ipconfig.txt  whoami.txt
+aprold@aproldpc:~/lab_dir2$ tar -c ../Документы | gzip > adocs.tgz
+tar: Удаляется начальный `../' из имен объектов
+aprold@aproldpc:~/lab_dir2$ ls
+adocs.tgz  my_info.tar  my_ipconfig.txt  ping.txt  test_dir  whoami.txt
+aprold@aproldpc:~/lab_dir2$ gzip -l adocs.tgz
+         compressed        uncompressed  ratio uncompressed_name
+              42768               71680  40.4% adocs.tar
+              aprold@aproldpc:~/lab_dir2$ gzip -d adocs.tgz
+aprold@aproldpc:~/lab_dir2$ ls
+adocs.tar  my_info.tar  my_ipconfig.txt  ping.txt  test_dir  whoami.txt
+aprold@aproldpc:~/lab_dir2$ tar -xf adocs.tar
+aprold@aproldpc:~/lab_dir2$ ls
+adocs.tar  my_info.tar  my_ipconfig.txt  ping.txt  test_dir  whoami.txt  Документы
+ 
+---------------------------------------------------------------------------------
+
+5. iconv, dos2unix, unix2dos
+
+aprold@aproldpc:~/lab_dir2$ cat > file.txt
+Everyone has one's own path
+У каждого своя дорога 
+!"№;%:?*()-=
+1234567890\n\r<>\\
+aprold@aproldpc:~/lab_dir2$ iconv -f CP1251 -t UTF-8 file.txt -o file_out.txt
+aprold@aproldpc:~/lab_dir2$ cat file_out.txt
+Everyone has one's own path
+РЈ РєР°Р¶РґРѕРіРѕ СЃРІРѕСЏ РґРѕСЂРѕРіР°
+!"в„–;%:?*()-=
+1234567890\n\r<>\\
+aprold@aproldpc:~/lab_dir2$ iconv -f UTF-8 -t CP1251 file_out.txt -o file_out2.txt
+aprold@aproldpc:~/lab_dir2$ cat file_out2.txt
+Everyone has one's own path
+У каждого своя дорога
+!"№;%:?*()-=
+1234567890\n\r<>\\
+aprold@aproldpc:~/lab_dir2$ iconv -f UTF-8 -t UTF-16 file.txt -o file_out.txt
+aprold@aproldpc:~/lab_dir2$ cat file_out.txt
+��Everyone has one's own path
+# :064>3> A2>O 4>@>30
+!"!;%:?*()-=
+1234567890\n\r<>\\
+aprold@aproldpc:~/lab_dir2$ iconv -f UTF-16 -t UTF-8 file.txt -o file_out.txt
+aprold@aproldpc:~/lab_dir2$ cat file_out.txt
+癅牥潹敮栠獡漠敮猧漠湷瀠瑡੨ꏐ퀠킺킰킶킴킾킳₾臑닐뻐近퀠킴톾킀킾킳ર∡蓢㮖㨥⨿⤨㴭ㄊ㌲㔴㜶㤸尰屮㱲尾ੜaprold@aproldpc:~/lab_dir2$ iconv -f UTF-8 -t UTF-16 file_out.txt -o file_out2.txt
+aprold@aproldpc:~/lab_dir2$ cat file_out2.txt
+��Everyone has one's own path
+У каждого своя дорога
+!"№;%:?*()-=
+1234567890\n\r<>\\
+aprold@aproldpc:~/lab_dir2$ iconv -f KOI-8 -t CP1251 file.txt -o file_out.txt
+iconv: недопустимая входная последовательность в позиции 29
+aprold@aproldpc:~/lab_dir2$ cat file_out.txt
+Everyone has one's own path
+aprold@aproldpc:~/lab_dir2$ od -c file.txt
+0000000   E   v   e   r   y   o   n   e       h   a   s       o   n   e
+0000020   '   s       o   w   n       p   a   t   h  \n 320 243     320
+0000040 272 320 260 320 266 320 264 320 276 320 263 320 276     321 201
+0000060 320 262 320 276 321 217     320 264 320 276 321 200 320 276 320
+0000100 263 320 260  \n   !   " 342 204 226   ;   %   :   ?   *   (   )
+0000120   -   =  \n   1   2   3   4   5   6   7   8   9   0   \   n   \
+0000140   r   <   >   \   \  \n
+0000146
+aprold@aproldpc:~/lab_dir2$ unix2dos file.txt
+unix2dos: преобразование файла file.txt в формат DOS…
+aprold@aproldpc:~/lab_dir2$ od -c file.txt
+0000000   E   v   e   r   y   o   n   e       h   a   s       o   n   e
+0000020   '   s       o   w   n       p   a   t   h  \r  \n 320 243    
+0000040 320 272 320 260 320 266 320 264 320 276 320 263 320 276     321
+0000060 201 320 262 320 276 321 217     320 264 320 276 321 200 320 276
+0000100 320 263 320 260  \r  \n   !   " 342 204 226   ;   %   :   ?   *
+0000120   (   )   -   =  \r  \n   1   2   3   4   5   6   7   8   9   0
+0000140   \   n   \   r   <   >   \   \  \r  \n
+0000152
+aprold@aproldpc:~/lab_dir2$ dos2unix file.txt
+dos2unix: преобразование файла file.txt в формат Unix…
+aprold@aproldpc:~/lab_dir2$ od -c file.txt
+0000000   E   v   e   r   y   o   n   e       h   a   s       o   n   e
+0000020   '   s       o   w   n       p   a   t   h  \n 320 243     320
+0000040 272 320 260 320 266 320 264 320 276 320 263 320 276     321 201
+0000060 320 262 320 276 321 217     320 264 320 276 321 200 320 276 320
+0000100 263 320 260  \n   !   " 342 204 226   ;   %   :   ?   *   (   )
+0000120   -   =  \n   1   2   3   4   5   6   7   8   9   0   \   n   \
+0000140   r   <   >   \   \  \n
+0000146
+
+---------------------------------------------------------------------------------
+
+6. конвейер с ssh
+
+aprold@aproldpc:~/lab_dir2$ tar -c ../Documents | gzip -9 | ssh ubuntuserver@192.168.0.27 "gzip -dl > docs.tar"
+tar: Удаляется начальный `../' из имен объектов
+ubuntuserver@192.168.0.27's password: 
+aprold@aproldpc:~/lab_dir2$ ssh ubuntuserver@192.168.0.27 ls
+ubuntuserver@192.168.0.27's password: 
+docs.tar
+my_ipconfig.txt
+my_text.txt
+new_dir
+ping.txt
+test_dir
+whoami.txt
+Документы
+
+
+
+
+
+
+

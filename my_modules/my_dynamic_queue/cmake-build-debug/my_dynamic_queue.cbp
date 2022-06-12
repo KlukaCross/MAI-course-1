@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="my_dynamic_queue"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="my_dynamic_queue">
+				<Option output="/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/my_dynamic_queue" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 my_dynamic_queue"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="my_dynamic_queue/fast">
+				<Option output="/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/my_dynamic_queue" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 my_dynamic_queue/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/qdbl.c">
+			<Option target="my_dynamic_queue"/>
+		</Unit>
+		<Unit filename="/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/qdbl.h">
+			<Option target="my_dynamic_queue"/>
+		</Unit>
+		<Unit filename="/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_dynamic_queue/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

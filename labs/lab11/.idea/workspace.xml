@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e25e31a1-51a7-4059-ba55-414dcd084760" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../lab26/list.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lab26/list.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lab26/sint.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lab26/sint.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../coursework/KP8/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../coursework/KP8/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../coursework/KP8/list.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../coursework/KP8/list.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab13/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../lab13/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab23/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../lab23/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/.cmake/api/v1/reply/cache-v2-4574c4343e47d2254344.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-8d109e3aa400ef7f6dc4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-de636cec53d5130e7dd1.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/.cmake/api/v1/reply/index-2022-04-25T18-04-52-0913.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/CMakeOutput.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/list_iter.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/list_iter.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/list_iter.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/list_iter.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/list_iter.dir/list.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/list_iter.dir/list.c.o.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/list_iter.dir/main.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/CMakeFiles/list_iter.dir/main.c.o.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/list_iter.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/list_iter/cmake-build-debug/list_iter.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/my_dynamic_stack/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/my_dynamic_stack/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/my_dynamic_stack/sdbl.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/my_dynamic_stack/sdbl.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../my_modules/my_dynamic_stack/sdbl.h" beforeDir="false" afterPath="$PROJECT_DIR$/../../my_modules/my_dynamic_stack/sdbl.h" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="28e5siuljQ60wScZ3O1vA9z5jNU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "/home/aprold/Documents/GitHub/MAIwork/1 course/coursework/KP8"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e25e31a1-51a7-4059-ba55-414dcd084760" name="Changes" comment="" />
+      <created>1651564420068</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1651564420068</updated>
+      <workItem from="1651564421301" duration="779000" />
+      <workItem from="1651599039313" duration="371000" />
+      <workItem from="1652089076905" duration="801000" />
+      <workItem from="1652250814391" duration="11000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

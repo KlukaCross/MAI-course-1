@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/file_queue.dir/main.c.o CMakeFiles/file_queue.dir/qdbl.c.o -o file_queue 

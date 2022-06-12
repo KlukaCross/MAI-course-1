@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/my_static_stack.dir/main.c.o CMakeFiles/my_static_stack.dir/sdbl.c.o -o my_static_stack 

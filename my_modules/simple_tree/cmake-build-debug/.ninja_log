@@ -1,0 +1,7 @@
+# ninja log v5
+0	14	1654523937022446559	build.ninja	dad7103bbee14781
+0	29	1654523961710567091	CMakeFiles/simple_stree.dir/main.c.o	af831ad918bfa1c5
+0	30	1654523961710567091	CMakeFiles/simple_stree.dir/stree_int.c.o	8680a4db03a749ce
+30	46	1654523961726567170	simple_stree	f1fdc045ba794940
+0	35	1654524021694868507	CMakeFiles/simple_stree.dir/stree_int.c.o	8680a4db03a749ce
+35	60	1654524021718868630	simple_stree	f1fdc045ba794940

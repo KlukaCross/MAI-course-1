@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/my_dynamic_stack.dir/sdbl.c.o -o my_dynamic_stack 
