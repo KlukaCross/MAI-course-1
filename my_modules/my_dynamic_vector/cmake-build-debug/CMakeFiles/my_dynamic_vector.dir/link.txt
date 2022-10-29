@@ -1,1 +1,0 @@
-/usr/bin/cc -g CMakeFiles/my_dynamic_vector.dir/main.c.o CMakeFiles/my_dynamic_vector.dir/svdbl.c.o -o my_dynamic_vector 

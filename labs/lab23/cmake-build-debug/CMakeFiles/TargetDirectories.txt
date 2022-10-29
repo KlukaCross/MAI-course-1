@@ -1,3 +1,0 @@
-/home/aprold/Documents/GitHub/MAIwork/1course/labs/lab23/cmake-build-debug/CMakeFiles/lab23.dir
-/home/aprold/Documents/GitHub/MAIwork/1course/labs/lab23/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/aprold/Documents/GitHub/MAIwork/1course/labs/lab23/cmake-build-debug/CMakeFiles/rebuild_cache.dir

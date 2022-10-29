@@ -1,3 +1,0 @@
-C:/Users/Aprold/CLionProjects/list_stack/cmake-build-debug/CMakeFiles/list_stack.dir
-C:/Users/Aprold/CLionProjects/list_stack/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Aprold/CLionProjects/list_stack/cmake-build-debug/CMakeFiles/rebuild_cache.dir

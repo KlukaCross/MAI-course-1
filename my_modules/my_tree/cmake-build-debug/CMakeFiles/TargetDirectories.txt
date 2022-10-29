@@ -1,3 +1,0 @@
-/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_tree/cmake-build-debug/CMakeFiles/my_tree.dir
-/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_tree/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/aprold/Documents/GitHub/MAIwork/1course/my_modules/my_tree/cmake-build-debug/CMakeFiles/rebuild_cache.dir

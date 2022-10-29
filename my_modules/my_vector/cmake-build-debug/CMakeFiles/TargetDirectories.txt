@@ -1,3 +1,0 @@
-C:/Users/Aprold/CLionProjects/my_vector/cmake-build-debug/CMakeFiles/my_vector.dir
-C:/Users/Aprold/CLionProjects/my_vector/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Aprold/CLionProjects/my_vector/cmake-build-debug/CMakeFiles/rebuild_cache.dir

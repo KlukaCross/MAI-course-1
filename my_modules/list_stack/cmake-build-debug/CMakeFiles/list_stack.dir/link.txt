@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\list_stack.dir/objects.a
-C:\Users\Aprold\gcc\bin\ar.exe cr CMakeFiles\list_stack.dir/objects.a @CMakeFiles\list_stack.dir\objects1.rsp
-C:\Users\Aprold\gcc\bin\gcc.exe -g -Wl,--whole-archive CMakeFiles\list_stack.dir/objects.a -Wl,--no-whole-archive -o list_stack.exe -Wl,--out-implib,liblist_stack.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\list_stack.dir\linklibs.rsp
