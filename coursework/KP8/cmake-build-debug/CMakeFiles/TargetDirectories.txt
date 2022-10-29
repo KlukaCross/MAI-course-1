@@ -1,3 +1,0 @@
-/home/aprold/Documents/GitHub/MAIwork/1course/coursework/KP8/cmake-build-debug/CMakeFiles/KP8.dir
-/home/aprold/Documents/GitHub/MAIwork/1course/coursework/KP8/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/aprold/Documents/GitHub/MAIwork/1course/coursework/KP8/cmake-build-debug/CMakeFiles/rebuild_cache.dir
