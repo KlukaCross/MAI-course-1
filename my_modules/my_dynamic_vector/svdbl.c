@@ -36,7 +36,7 @@ bool svdbl_set_size(svector_dbl *v, size_t new_size) {
             v->first = 0;
     }
     else if (new_size > v->size) {
-        if (new_size > v->pool_size) {
+        while (new_size > v->pool_size) {
             if (!grow_buffer(v)) return false;
         }
         for (size_t i = v->size; i < new_size; i++) {
